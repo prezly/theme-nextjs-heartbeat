@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
     const env = getEnvVariables(context.req);
     const prezlyAPI = new Prezly(env.PREZLY_ACCESS_TOKEN);
 
-    const stories = await prezlyAPI.getHomepageStories();
+    const stories = await prezlyAPI.getHomepageStories(12);
 
     return {
         props: { stories },
