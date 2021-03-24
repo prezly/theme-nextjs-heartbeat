@@ -5,9 +5,9 @@ import Document, {
 class MyDocument extends Document {
     render() {
         return (
-            <Html className="text-gray-500 antialiased bg-white js-focus-visible">
+            <Html className="text-gray-900 leading-tight">
                 <Head />
-                <body>
+                <body className="min-h-screen bg-gray-100">
                     <Main />
                     <NextScript />
                 </body>
