@@ -4,9 +4,7 @@ import Header from './Header';
 const Layout: FunctionComponent = ({ children }) => (
     <>
         <Header />
-        <div className="container mx-auto">
-            {children}
-        </div>
+        {children}
     </>
 );
 
