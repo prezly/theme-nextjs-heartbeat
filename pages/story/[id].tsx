@@ -18,11 +18,11 @@ export const getServerSideProps: GetServerSideProps = withAuthorization(async (c
     const env = getEnvVariables(context.req);
     const prezlySdk = getPrezlySdk(context.req);
 
-    const story = await prezlySdk.stories.get(Number(context.params!.id))
+    const story = await prezlySdk.stories.get(Number(context.params!.id));
 
     return {
         props: {
-            story
+            story,
         },
     };
 });
