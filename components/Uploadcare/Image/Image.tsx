@@ -1,11 +1,7 @@
-import classNames from 'classnames';
 import React, { FunctionComponent } from 'react';
-import { inspect } from 'util';
 import { Props } from '../types';
 import { getPictureDetails } from './lib';
-// import styles from './Image.module.scss';
 import getEffectiveImageSize from './lib/getEffectiveImageSize';
-// import styles = module
 
 const UploadcareImage: FunctionComponent<Props> = (props) => {
     const {

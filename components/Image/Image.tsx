@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
-import { UploadcareImage, UploadcareImageProps } from '../Uploadcare';
-import { ImageExtension } from '../Uploadcare/types';
+import { UploadcareImage, UploadcareImageProps } from '@/components/Uploadcare';
+import { ImageExtension } from '@/components/Uploadcare/types';
 
 export type Props = UploadcareImageProps;
 
@@ -12,7 +12,9 @@ const Image: FunctionComponent<Props> = (props) => {
 
     // If it's a svg then there is no need for responsive image
     if (extension === 'svg') {
-        const { sizes, objectFit, layout, lazy, containerClassName, ...imgProps } = props;
+        const {
+            sizes, objectFit, layout, lazy, containerClassName, ...imgProps
+        } = props;
         return <img {...imgProps} loading={lazy ? 'lazy' : 'eager'} />;
     }
 
