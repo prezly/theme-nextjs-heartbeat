@@ -23,7 +23,7 @@ const options: Options = {
     [HEADING_1_NODE_TYPE]: ({ children }) => <h2>{children}</h2>,
     [HEADING_2_NODE_TYPE]: ({ children }) => <h3>{children}</h3>,
     // [LINK_NODE_TYPE]: ({ children, node }) => <a href={node.href}>{children}</a>,
-    [PARAGRAPH_NODE_TYPE]: ({ children, node }) => (<p>{children}</p>),
+    [PARAGRAPH_NODE_TYPE]: ({ children }) => (<p>{children}</p>),
     // [QUOTE_NODE_TYPE]: ({ children }) => <blockquote>{children}</blockquote>,
 };
 
