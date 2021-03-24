@@ -1,30 +1,30 @@
-import type { FunctionComponent } from "react";
-import type { Story } from "@prezly/sdk";
-import { GetServerSideProps } from "next";
-import { getEnvVariables, getPrezlySdk, withAuthorization } from "utils/prezly";
-import Layout from "components/Layout";
-import Stories from "modules/Stories";
+import type { FunctionComponent } from 'react';
+import { GetServerSideProps } from 'next';
+import { getEnvVariables } from 'utils/prezly';
+import { Prezly } from 'utils/providers/prezly';
+import Layout from 'components/Layout';
+import Stories from 'modules/Stories';
+import type { ExtendedStory } from '@prezly/sdk/dist/types';
 
 type Props = {
-    stories: Story[];
+    stories: Array<ExtendedStory>;
 }
 
 const IndexPage: FunctionComponent<Props> = ({ stories }) => (
     <Layout>
-        <h1>Hello Prezly 👋</h1>
         <Stories stories={stories} />
     </Layout>
 );
 
-export const getServerSideProps: GetServerSideProps<Props> = withAuthorization(async (context) => {
+export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
     const env = getEnvVariables(context.req);
-    const prezlySdk = getPrezlySdk(context.req);
+    const prezlyAPI = new Prezly(env.PREZLY_ACCESS_TOKEN);
 
-    const stories = (await prezlySdk.stories.list()).stories;
+    const stories = await prezlyAPI.getHomepageStories();
 
     return {
         props: { stories },
     };
-});
+};
 
 export default IndexPage;
