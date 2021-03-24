@@ -31,23 +31,27 @@ const StoryCard: FunctionComponent<Props> = ({ story }) => {
             <a>
 
                 <div className="flex flex-col rounded-lg shadow-lg overflow-hidden" key={story.id}>
+
                     <div className="flex-shrink-0">
-                        <Image
-                            lazy
-                            imageDetails={imageToUse}
-                            alt={story.title}
-                            layout="fill"
-                            height={240}
-                            sizes={{
-                                mobile: 732,
-                                tablet: 315,
-                                allDesktops: 382,
-                                default: 1200,
-                            }}
-                            objectFit="cover"
-                            objectPosition="center center"
-                            className="h-48 w-full"
-                        />
+                        {imageToUse
+                        && (
+                            <Image
+                              lazy
+                              imageDetails={imageToUse as any}
+                              alt={story.title}
+                              layout="fill"
+                              height={240}
+                              sizes={{
+                                    mobile: 732,
+                                    tablet: 315,
+                                    allDesktops: 382,
+                                    default: 1200,
+                                }}
+                              objectFit="cover"
+                              objectPosition="center center"
+                              className="h-48 w-full"
+                            />
+                        )}
                     </div>
                     <div className="flex-1 bg-white p-6 flex flex-col justify-between">
                         <div className="flex-1">

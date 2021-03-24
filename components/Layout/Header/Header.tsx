@@ -1,4 +1,5 @@
 import type { FunctionComponent } from 'react';
+import Link from 'next/link';
 
 const Header: FunctionComponent = () => (
     <header className="relative bg-white">
@@ -6,10 +7,12 @@ const Header: FunctionComponent = () => (
         <div className="relative z-20">
             <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-5 sm:px-6 sm:py-4 lg:px-8 md:justify-start md:space-x-10">
                 <div>
-                    <a href="#" className="flex">
-                        <span className="sr-only">Heartbeat</span>
-                        <img className="h-24 w-auto" src="https://cdn.uc.assets.prezly.com/1a393240-1739-487c-a4bc-ed3c36f6b300/-/quality/best/-/format/auto/" alt="" />
-                    </a>
+                    <Link href="/" passHref>
+                        <a className="flex">
+                            <span className="sr-only">Heartbeat</span>
+                            <img className="h-24 w-auto" src="https://cdn.uc.assets.prezly.com/1a393240-1739-487c-a4bc-ed3c36f6b300/-/quality/best/-/format/auto/" alt="" />
+                        </a>
+                    </Link>
                 </div>
                 <div className="-mr-2 -my-2 md:hidden">
                     <button type="button" className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
