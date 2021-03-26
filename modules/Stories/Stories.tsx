@@ -14,7 +14,8 @@ const Stories: FunctionComponent<Props> = ({ stories }) => (
                     Prezly heartbeat ❤️
                 </h2>
                 <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
-                    Heartbeat.prezly.io is an internal newsroom for team announcements, strategy decisions or weekly company updates.
+                    Heartbeat.prezly.io is an internal newsroom for team announcements,
+                    strategy decisions or weekly company updates.
                 </p>
             </div>
             <div className="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">

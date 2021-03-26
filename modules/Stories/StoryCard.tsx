@@ -27,29 +27,28 @@ const StoryCard: FunctionComponent<Props> = ({ story }) => {
     const readingTime = ReadingTime(story.content);
 
     return (
-        <Link key={story.id} href={`/story/${story.id}`} passHref>
+        <Link key={story.id} href={story.slug} passHref>
             <a>
-
                 <div className="flex flex-col rounded-lg shadow-lg overflow-hidden" key={story.id}>
 
                     <div className="flex-shrink-0">
                         {imageToUse
                         && (
                             <Image
-                              lazy
-                              imageDetails={imageToUse as any}
-                              alt={story.title}
-                              layout="fill"
-                              height={240}
-                              sizes={{
+                                lazy
+                                imageDetails={imageToUse as any}
+                                alt={story.title}
+                                layout="fill"
+                                height={240}
+                                sizes={{
                                     mobile: 732,
                                     tablet: 315,
                                     allDesktops: 382,
                                     default: 1200,
                                 }}
-                              objectFit="cover"
-                              objectPosition="center center"
-                              className="h-48 w-full"
+                                objectFit="cover"
+                                objectPosition="center center"
+                                className="h-48 w-full"
                             />
                         )}
                     </div>

@@ -1,8 +1,8 @@
 export type ImageExtension = 'svg' | 'jpeg' | 'webp' | 'png' | 'jpg' | 'gif';
 
 export type Options = Pick<ImageSourceProps, 'src' | 'imageDetails'> &
-    Pick<ImageLayoutProps, 'layout' | 'objectFit' | 'objectPosition' | 'sizes'> &
-    Pick<BaseProps, 'width' | 'height' | 'effects' | 'defaultFormat' | 'formats' | 'filename'>;
+Pick<ImageLayoutProps, 'layout' | 'objectFit' | 'objectPosition' | 'sizes'> &
+Pick<BaseProps, 'width' | 'height' | 'effects' | 'defaultFormat' | 'formats' | 'filename'>;
 
 type Width = number;
 
@@ -23,30 +23,30 @@ type UploadcareEffect = string | ((options: Options) => string);
 
 type ImageSourceProps =
     | {
-          src: string;
-          imageDetails?: never;
-      }
+        src: string;
+        imageDetails?: never;
+    }
     | {
-          src?: never;
-          imageDetails: Record<string, any>;
-      };
+        src?: never;
+        imageDetails: Record<string, any>;
+    };
 
 type ImageLayoutProps =
     | {
-          layout: 'fill';
-          objectFit: 'cover' | 'contain' | 'none' | 'fill';
-          objectPosition?: string;
-          /**
+        layout: 'fill';
+        objectFit: 'cover' | 'contain' | 'none' | 'fill';
+        objectPosition?: string;
+        /**
            * Sizes used to generate sources for different screen resolutions
            */
-          sizes?: Sizes;
-      }
+        sizes?: Sizes;
+    }
     | {
-          layout: 'fixed';
-          objectFit?: never;
-          objectPosition?: never;
-          sizes?: never;
-      };
+        layout: 'fixed';
+        objectFit?: never;
+        objectPosition?: never;
+        sizes?: never;
+    };
 
 type BaseProps = {
     alt?: string;

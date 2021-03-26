@@ -15,7 +15,7 @@ const Image: FunctionComponent<Props> = (props) => {
         const {
             sizes, objectFit, layout, lazy, containerClassName, ...imgProps
         } = props;
-        return <img {...imgProps} loading={lazy ? 'lazy' : 'eager'} />;
+        return <img {...imgProps} loading={lazy ? 'lazy' : 'eager'} alt="" />;
     }
 
     // If it's a gif image then show it as a video, using Uploadcare's gif2video transformation
