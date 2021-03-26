@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: theme-nextjs-heartbeat
+  namespace: themes
+spec:
+  selector:
+    matchLabels:
+      app: theme-nextjs-heartbeat
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: theme-nextjs-heartbeat
+    spec:
+      tolerations:
+      - key: "dedicated"
+        operator: "Equal"
+        value: "spot"
+        effect: "NoSchedule"
+      containers:
+      - image: 319065933276.dkr.ecr.eu-west-1.amazonaws.com/theme-nextjs-heartbeat:latest
+        name: theme-nextjs-heartbeat
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+        env:
+        - name: HTTP_ENV_HEADER
+          value: x-prezly-env
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi

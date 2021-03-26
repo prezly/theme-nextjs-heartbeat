@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: theme-nextjs-heartbeat
+  name: theme-nextjs-heartbeat
+  namespace: themes
+spec:
+  ports:
+  - name: web
+    port: 3000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: theme-nextjs-heartbeat
+  sessionAffinity: None
+  type: ClusterIP
