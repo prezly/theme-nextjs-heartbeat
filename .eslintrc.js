@@ -22,15 +22,18 @@ module.exports = {
         '@typescript-eslint',
     ],
     rules: {
+        'max-len': ['warn', { code: 120 }],
         'react/react-in-jsx-scope': 'off',
+        'react/jsx-props-no-spreading': 'off',
         'react/prop-types': 'off',
         'react/jsx-filename-extension': ['warn', { extensions: ['.tsx'] }],
-        'react/jsx-indent': ['error', 4],
+        'react/jsx-indent': ['warn', 4],
+        'react/jsx-indent-props': ['warn', 4],
         'import/extensions': ['warn', {
             ts: 'never',
             tsx: 'never',
         }],
-        indent: ['error', 4],
+        indent: ['warn', 4],
         '@typescript-eslint/naming-convention': [
             'warn',
             {

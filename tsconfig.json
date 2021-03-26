@@ -6,7 +6,7 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "lib": ["dom", "es2017"],
+    "lib": ["dom", "es2017", "es2019"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
@@ -15,7 +15,7 @@
     "noUnusedParameters": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "target": "esnext",
     "baseUrl": ".",
     "paths": {

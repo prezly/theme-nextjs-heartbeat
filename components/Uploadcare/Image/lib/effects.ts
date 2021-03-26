@@ -29,7 +29,7 @@ export const crop = (width: number, height: number) => {
     return `/crop/${safeWidth}x${safeHeight}/`;
 };
 
-export const format = (format: ImageExtension) => `/format/${format}/`;
+export const format = (extension: ImageExtension) => `/format/${extension}/`;
 
 export const grayscale = () => '/grayscale/';
 

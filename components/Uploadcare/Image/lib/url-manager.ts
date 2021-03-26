@@ -6,14 +6,12 @@ type PrepareUrlProps = Pick<Options, 'width' | 'imageDetails' | 'src' | 'filenam
 const UPLOADCARE_CDN_URL = 'https://cdn.uc.assets.prezly.com';
 const UPLOADCARE_MEDIA_PROXY_URL = 'https://proxy.uc.assets.prezly.com/';
 
-const handleEffects = (effects: Options['effects'], options) => {
-    return effects.map((effect) => {
-        if (typeof effect === 'function') {
-            return effect(options);
-        }
-        return effect;
-    });
-};
+const handleEffects = (effects: Options['effects'], options) => effects.map((effect) => {
+    if (typeof effect === 'function') {
+        return effect(options);
+    }
+    return effect;
+});
 
 export const prepareUploadcareMediaProxyUrl = (options: PrepareUrlProps) => {
     const { src, effects } = options;
@@ -27,7 +25,9 @@ export const prepareUploadcareMediaProxyUrl = (options: PrepareUrlProps) => {
 };
 
 export const prepareUploadcareUrl = (options: PrepareUrlProps) => {
-    const { imageDetails, src, filename, effects } = options;
+    const {
+        imageDetails, src, filename, effects,
+    } = options;
 
     // if external image, use media-proxy
     if (src) {
