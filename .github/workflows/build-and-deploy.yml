@@ -2,8 +2,6 @@ name: Build image and deploy to k8s
 
 on:
   push:
-    paths-ignore:
-    - ".github/**"
 
 jobs:
   build:
