@@ -34,11 +34,12 @@ jobs:
       run: |
         export IMAGE_TAG=${GITHUB_SHA::6}
         docker build -t $ECR_REGISTRY/theme-nextjs-heartbeat:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/theme-nextjs-heartbeat:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/theme-nextjs-heartbeat:$IMAGE_TAG
   deploy:
     name: Deploy to Kubernetes
     runs-on: [self-hosted, linux, x64]
     steps:
+    - uses: actions/checkout@v2
     - name: Deploy to kubernetes
       run: |
         kubectl set image -n themes deployment.apps/theme-nextjs-heartbeat theme-nextjs-heartbeat=$ECR_REGISTRY/theme-nextjs-heartbeat:$IMAGE_TAG
