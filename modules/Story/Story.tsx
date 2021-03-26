@@ -12,7 +12,7 @@ const Story: FunctionComponent<Props> = ({ story }) => {
     }
 
     const {
-        title, subtitle, format_version, content, htmlContent,
+        title, subtitle, format_version, content,
     } = story;
 
     return (
@@ -107,7 +107,7 @@ const Story: FunctionComponent<Props> = ({ story }) => {
                 <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
                     {format_version === 1 && (
                         // eslint-disable-next-line react/no-danger
-                        <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+                        <div dangerouslySetInnerHTML={{ __html: content }} />
                     )}
                     {format_version === 3 && (
                         <SlateRenderer nodes={JSON.parse(content)} />
