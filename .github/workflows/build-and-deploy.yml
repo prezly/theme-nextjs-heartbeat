@@ -36,6 +36,7 @@ jobs:
         docker build -t $ECR_REGISTRY/theme-nextjs-heartbeat:$IMAGE_TAG .
         docker push $ECR_REGISTRY/theme-nextjs-heartbeat:$IMAGE_TAG
   deploy:
+    needs: build
     name: Deploy to Kubernetes
     runs-on: [self-hosted, linux, x64]
     steps:
