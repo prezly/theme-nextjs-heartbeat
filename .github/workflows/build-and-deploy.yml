@@ -46,4 +46,3 @@ jobs:
       run: |
         export IMAGE_TAG=${GITHUB_SHA::6}
         kubectl set image -n themes deployment.apps/theme-nextjs-heartbeat theme-nextjs-heartbeat=$ECR_REGISTRY/theme-nextjs-heartbeat:$IMAGE_TAG
-        kubectl apply -f k8s/ingress.yaml
