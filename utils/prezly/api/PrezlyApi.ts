@@ -106,28 +106,6 @@ export default class PrezlyApi {
         return stories;
     }
 
-    async getAllStoriesFromCategory(
-        categoryName: Category['display_name'],
-        limit = DEFAULT_STORIES_COUNT,
-        order: SortOrder = DEFAULT_SORT_ORDER,
-    ) {
-        const sortOrder = getSortByPublishedDate(order);
-        const category = await this.getCategory(categoryName);
-
-        if (!category) {
-            // 404?
-            return [];
-        }
-
-        const jsonQuery = JSON.stringify(
-            getStoriesQuery(await this.getNewsroomUuid(), category.id),
-        );
-
-        const { stories } = await this.searchStories({ limit, sortOrder, jsonQuery });
-
-        return stories;
-    }
-
     async getStoryBySlug(slug: string) {
         const jsonQuery = JSON.stringify(getSlugQuery(slug));
         const { stories } = await this.searchStories({
