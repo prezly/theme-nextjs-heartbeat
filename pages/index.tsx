@@ -13,7 +13,14 @@ type Props = {
 
 const IndexPage: FunctionComponent<Props> = ({ stories, categories }) => (
     <Layout categories={categories}>
-        <Stories stories={stories} />
+        <Stories
+            stories={stories}
+            title="Prezly heartbeat ❤️"
+            description={`
+            Heartbeat.prezly.io is an internal newsroom for team announcements,
+            strategy decisions or weekly company updates.
+            `}
+        />
     </Layout>
 );
 

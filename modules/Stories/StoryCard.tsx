@@ -27,7 +27,7 @@ const StoryCard: FunctionComponent<Props> = ({ story }) => {
     const readingTime = ReadingTime(story.content);
 
     return (
-        <Link key={story.id} href={story.slug} passHref>
+        <Link key={story.id} href={`/${story.slug}`} passHref>
             <a>
                 <div className="flex flex-col rounded-lg shadow-lg overflow-hidden" key={story.id}>
 
