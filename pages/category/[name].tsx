@@ -22,13 +22,8 @@ export const getServerSideProps: GetServerSideProps<Props> = withAuthorization(a
     const api = getPrezlyApi(context.req);
     const { name } = context.params as { name: string };
     const categories = await api.getCategories();
-<<<<<<< HEAD
     const category = await api.getCategory(name as string);
     const stories = await api.getAllStoriesExtendedFromCategory(name as string);
-=======
-    const category = await api.getCategory(name) as Category;
-    const stories = await api.getAllStoriesFromCategory(name);
->>>>>>> 8bf739b... fix builds
 
     return {
         props: { stories, category, categories },
