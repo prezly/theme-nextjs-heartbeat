@@ -48,7 +48,7 @@ const Header: FunctionComponent<Props> = ({ categories }) => {
                         </button>
                         {
                             menuOpen && (
-                                <div className="absolute z-10 -top-2 md:top-8 right-0 w-full mt-2 md:py-4 origin-top-right rounded-md shadow-lg md:w-80">
+                                <div className="absolute z-10 -top-2 md:top-8 right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-80">
                                     <div className="px-2 py-2 bg-white rounded-md shadow">
                                         {categories.map((category) => {
                                             const locales = Object.keys(category.i18n);
