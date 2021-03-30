@@ -108,10 +108,10 @@ const Story: FunctionComponent<Props> = ({ story }) => {
                 <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
                     {format_version === 1 && (
                         // eslint-disable-next-line react/no-danger
-                        <div dangerouslySetInnerHTML={{ __html: content }} />
+                        <div dangerouslySetInnerHTML={{ __html: content as string }} />
                     )}
                     {format_version === 3 && (
-                        <SlateRenderer nodes={JSON.parse(content)} />
+                        <SlateRenderer nodes={JSON.parse(content as string)} />
                     )}
                 </div>
             </div>
