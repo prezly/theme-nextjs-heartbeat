@@ -18,16 +18,25 @@ const IndexPage: FunctionComponent<Props> = ({ category, stories, categories }) 
     </Layout>
 );
 
-export const getServerSideProps: GetServerSideProps<Props> = withAuthorization(async (context) => {
-    const api = getPrezlyApi(context.req);
-    const { name } = context.params as { name: string };
-    const categories = await api.getCategories();
-    const category = await api.getCategory(name as string);
-    const stories = await api.getAllStoriesExtendedFromCategory(name as string);
+export const getServerSideProps: GetServerSideProps<Props> = withAuthorization<Props>(
+    async (context) => {
+        const api = getPrezlyApi(context.req);
+        const { slug } = context.params as { slug: string };
+        const categories = await api.getCategories();
+        const category = await api.getCategoryBySlug(slug);
 
-    return {
-        props: { stories, category, categories },
-    };
-});
+        if (!category) {
+            return {
+                notFound: true,
+            };
+        }
+
+        const stories = await api.getAllStoriesExtendedFromCategory(category);
+
+        return {
+            props: { stories, category, categories },
+        };
+    },
+);
 
 export default IndexPage;
