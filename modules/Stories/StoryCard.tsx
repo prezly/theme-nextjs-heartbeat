@@ -24,7 +24,7 @@ const StoryCard: FunctionComponent<Props> = ({ story }) => {
     }
 
     const publicationDate = new Date(story.published_at);
-    const readingTime = ReadingTime(story.content);
+    const readingTime = ReadingTime(story.content as string);
 
     return (
         <Link key={story.id} href={`/${story.slug}`} passHref>
