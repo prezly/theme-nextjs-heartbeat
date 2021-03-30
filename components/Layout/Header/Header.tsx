@@ -65,20 +65,27 @@ const Header: FunctionComponent<Props> = ({ categories }) => {
                                     <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                                         <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
                                             {
-                                                categories.map((category) => (
-                                                    <Link key={category.id} href={`/category/${category.display_name}`}>
-                                                        <a className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
-                                                            <div className="ml-4">
-                                                                <p className="text-base font-medium text-gray-900">
-                                                                    {category.display_name}
-                                                                </p>
-                                                                <p className="mt-1 text-sm text-gray-500">
-                                                                    {category.display_description}
-                                                                </p>
-                                                            </div>
-                                                        </a>
-                                                    </Link>
-                                                ))
+                                                categories.map((category) => {
+                                                    const locales = Object.keys(category.i18n);
+                                                    const locale = locales.filter(
+                                                        (l) => !!category.i18n[l].slug,
+                                                    )[0] || locales[0];
+
+                                                    return (
+                                                        <Link key={category.id} href={`/category/${category.i18n[locale].slug}`}>
+                                                            <a className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" onClick={toggleMenu}>
+                                                                <div className="ml-4">
+                                                                    <p className="text-base font-medium text-gray-900">
+                                                                        {category.display_name}
+                                                                    </p>
+                                                                    <p className="mt-1 text-sm text-gray-500">
+                                                                        {category.display_description}
+                                                                    </p>
+                                                                </div>
+                                                            </a>
+                                                        </Link>
+                                                    );
+                                                })
                                             }
                                         </div>
                                     </div>
