@@ -29,7 +29,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
         };
     }
 
-    const stories = await api.getAllStoriesExtendedFromCategory(category);
+    const stories = await api.getStoriesFromCategory(category);
 
     return {
         props: { stories, category, categories },
