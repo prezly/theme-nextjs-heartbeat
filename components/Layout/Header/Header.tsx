@@ -5,7 +5,7 @@ import { Category } from '@prezly/sdk/dist/types';
 import { useRouter } from 'next/router';
 
 type Props = {
-    categories?: Array<Category>
+    categories?: Array<Category>;
 };
 
 const Header: FunctionComponent<Props> = ({ categories }) => {
