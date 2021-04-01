@@ -24,10 +24,10 @@ const StoryCard: FunctionComponent<Props> = ({ story }) => {
     }
 
     const publicationDate = new Date(story.published_at);
-    const readingTime = ReadingTime(story.content);
+    const readingTime = ReadingTime(story.content as string);
 
     return (
-        <Link key={story.id} href={story.slug} passHref>
+        <Link key={story.id} href={`/${story.slug}`} passHref>
             <a>
                 <div className="flex flex-col rounded-lg shadow-lg overflow-hidden" key={story.id}>
 
@@ -58,6 +58,7 @@ const StoryCard: FunctionComponent<Props> = ({ story }) => {
                                 {story.categories.map((category) => (
                                     <span
                                         className="inline-flex items-center px-3 py-0.5 mr-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800"
+                                        key={category.id}
                                     >
                                         {category.display_name}
                                     </span>
