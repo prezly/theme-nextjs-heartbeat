@@ -1,6 +1,7 @@
 import type { FunctionComponent } from 'react';
 import type { ExtendedStory } from '@prezly/sdk/dist/types';
 import SlateRenderer from 'components/SlateRenderer';
+import { FormatVersion } from '@prezly/sdk/dist/types/Story';
 
 type Props = {
     story: ExtendedStory;
@@ -16,7 +17,6 @@ const Story: FunctionComponent<Props> = ({ story }) => {
     } = story;
 
     return (
-
         <article className="relative py-16 bg-white overflow-hidden">
             <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
                 <div className="relative h-full text-lg max-w-prose mx-auto" aria-hidden="true">
@@ -106,11 +106,11 @@ const Story: FunctionComponent<Props> = ({ story }) => {
                     </p>
                 </div>
                 <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
-                    {format_version === 1 && (
+                    {format_version === FormatVersion.HTML && (
                         // eslint-disable-next-line react/no-danger
                         <div dangerouslySetInnerHTML={{ __html: content as string }} />
                     )}
-                    {format_version === 3 && (
+                    {format_version === FormatVersion.SLATEJS && (
                         <SlateRenderer nodes={JSON.parse(content as string)} />
                     )}
                 </div>
