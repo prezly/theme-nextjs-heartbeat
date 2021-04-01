@@ -24,7 +24,7 @@ spec:
         value: "spot"
         effect: "NoSchedule"
       containers:
-      - image: ***REMOVED***.dkr.ecr.eu-west-1.amazonaws.com/theme-nextjs-heartbeat:latest
+      - image: ***REMOVED***.dkr.ecr.eu-west-1.amazonaws.com/theme-nextjs-heartbeat:09b5aa
         name: theme-nextjs-heartbeat
         ports:
         - containerPort: 3000
@@ -32,6 +32,8 @@ spec:
         env:
         - name: HTTP_ENV_HEADER
           value: x-prezly-env
+        - name: PREZLY_NEWSROOM_UUID
+          value: 7ae88112-150b-4475-b38f-bc10872a396f
         resources:
           limits:
             cpu: 2000m
