@@ -18,12 +18,11 @@ const IndexPage: FunctionComponent<Props> = ({ stories, categories, newsroom }) 
     <>
         <PageSeo
             title={newsroom.display_name}
-            description=""
+            description="Prezly heartbeat ❤️"
             url={newsroom.url}
             imageUrl={getAssetsUrl(newsroom.newsroom_logo?.uuid as string)}
         />
         <Layout categories={categories}>
-            <Stories stories={stories} />
             <Stories
                 stories={stories}
                 title="Prezly heartbeat ❤️"
