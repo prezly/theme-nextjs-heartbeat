@@ -26,8 +26,6 @@ const IndexPage: FunctionComponent<Props> = ({
             imageUrl={getAssetsUrl(newsroom.newsroom_logo?.uuid as string)}
         />
         <Layout categories={categories}>
-            <h1>{category.display_name}</h1>
-            <p>{category.display_description}</p>
             <Stories stories={stories} title={category.display_name} description={category.display_description} />
         </Layout>
     </>
