@@ -14,11 +14,16 @@ type Props = {
     newsroom: Newsroom;
 };
 
+const description = `
+    Heartbeat.prezly.io is an internal newsroom for team announcements,
+    strategy decisions or weekly company updates.
+`;
+
 const IndexPage: FunctionComponent<Props> = ({ stories, categories, newsroom }) => (
     <>
         <PageSeo
             title={newsroom.display_name}
-            description="Prezly heartbeat ❤️"
+            description={description}
             url={newsroom.url}
             imageUrl={getAssetsUrl(newsroom.newsroom_logo?.uuid as string)}
         />
@@ -26,10 +31,7 @@ const IndexPage: FunctionComponent<Props> = ({ stories, categories, newsroom }) 
             <Stories
                 stories={stories}
                 title="Prezly heartbeat ❤️"
-                description={`
-            Heartbeat.prezly.io is an internal newsroom for team announcements,
-            strategy decisions or weekly company updates.
-            `}
+                description={description}
             />
         </Layout>
     </>
