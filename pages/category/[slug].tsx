@@ -3,18 +3,34 @@ import { GetServerSideProps } from 'next';
 import { getPrezlyApi } from '@/utils/prezly';
 import Layout from '@/components/Layout';
 import Stories from '@/modules/Stories';
-import { Category, ExtendedStory } from '@prezly/sdk/dist/types';
+import { Category, ExtendedStory, Newsroom } from '@prezly/sdk/dist/types';
+import { PageSeo } from '@/components/seo';
 
 type Props = {
     stories: ExtendedStory[];
-    category: Category
-    categories: Category[]
+    category: Category;
+    categories: Category[];
+    newsroom: Newsroom;
+    slug: string;
 };
 
-const IndexPage: FunctionComponent<Props> = ({ category, stories, categories }) => (
-    <Layout categories={categories}>
-        <Stories stories={stories} title={category.display_name} description={category.display_description} />
-    </Layout>
+const IndexPage: FunctionComponent<Props> = ({
+    category, stories, categories, slug, newsroom,
+}) => (
+    <>
+        <PageSeo
+            title={category.display_name}
+            description={category.display_description as string}
+            url={`${newsroom.url}/category/${slug}`}
+            // @ts-expect-error
+            imageUrl={newsroom.newsroom_logo.cdnUrl}
+        />
+        <Layout categories={categories}>
+            <h1>{category.display_name}</h1>
+            <p>{category.display_description}</p>
+            <Stories stories={stories} title={category.display_name} description={category.display_description} />
+        </Layout>
+    </>
 );
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
@@ -22,6 +38,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
     const { slug } = context.params as { slug: string };
     const categories = await api.getCategories();
     const category = await api.getCategoryBySlug(slug);
+    const newsroom = await api.getNewsroom();
 
     if (!category) {
         return {
@@ -32,7 +49,13 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
     const stories = await api.getStoriesExtendedFromCategory(category);
 
     return {
-        props: { stories, category, categories },
+        props: {
+            stories,
+            category,
+            categories,
+            newsroom,
+            slug,
+        },
     };
 };
 
