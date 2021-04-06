@@ -26,7 +26,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         return { notFound: true };
     }
     const categories = await api.getCategories();
-    const topicId = await syncDiscourseThread(getEnvVariables(context.req), story);
+
+    const { DISCOURSE_API_URL } = getEnvVariables(context.req);
+    const topicId = DISCOURSE_API_URL ? await syncDiscourseThread(getEnvVariables(context.req), story) : null;
+
+    console.log(topicId);
 
     return {
         props: {
