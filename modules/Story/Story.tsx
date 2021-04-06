@@ -2,6 +2,7 @@ import type { FunctionComponent } from 'react';
 import type { ExtendedStory } from '@prezly/sdk/dist/types';
 import SlateRenderer from 'components/SlateRenderer';
 import { FormatVersion } from '@prezly/sdk/dist/types/Story';
+import DiscourseForum from './discourse-forum';
 
 type Props = {
     story: ExtendedStory;
@@ -113,7 +114,9 @@ const Story: FunctionComponent<Props> = ({ story }) => {
                     {format_version === FormatVersion.SLATEJS && (
                         <SlateRenderer nodes={JSON.parse(content as string)} />
                     )}
+                    <DiscourseForum />
                 </div>
+
             </div>
         </article>
     );
