@@ -5,4 +5,5 @@ export interface Env {
     DISCOURSE_USERNAME: string;
     DISCOURSE_API_URL: string;
     DISCOURSE_API_KEY: string;
+    DISCOURSE_CATEGORY_ID: number;
 }
