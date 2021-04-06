@@ -5,14 +5,16 @@ import type { ExtendedStory } from '@prezly/sdk/dist/types';
 import { Env } from 'types';
 
 const findTopicByTitle = async (env: Env, title: string) => {
-    const { DISCOURSE_API_URL, DISCOURSE_API_KEY, DISCOURSE_USERNAME } = env;
+    const {
+        DISCOURSE_API_URL, DISCOURSE_API_KEY, DISCOURSE_USERNAME, DISCOURSE_CATEGORY_ID,
+    } = env;
     const headers = {
         'Api-Key': DISCOURSE_API_KEY,
         'Api-Username': DISCOURSE_USERNAME,
         'Content-Type': 'application/json',
     };
 
-    const response = await fetch(`${DISCOURSE_API_URL}c/7.json`, { method: 'GET', headers });
+    const response = await fetch(`${DISCOURSE_API_URL}c/${DISCOURSE_CATEGORY_ID}.json`, { method: 'GET', headers });
     const data = await response.json();
 
     return data.topic_list.topics.find((topic) => topic.title === title);
@@ -31,7 +33,9 @@ const getStoryHtml = (story: ExtendedStory) : string => {
 };
 
 const createTopicForStory = async (env: Env, story: ExtendedStory) => {
-    const { DISCOURSE_API_URL, DISCOURSE_API_KEY, DISCOURSE_USERNAME } = env;
+    const {
+        DISCOURSE_API_URL, DISCOURSE_API_KEY, DISCOURSE_USERNAME, DISCOURSE_CATEGORY_ID,
+    } = env;
     const headers = {
         'Api-Key': DISCOURSE_API_KEY,
         'Api-Username': DISCOURSE_USERNAME,
@@ -48,7 +52,7 @@ const createTopicForStory = async (env: Env, story: ExtendedStory) => {
 
     const body = {
         title: `${story.title}`,
-        category: 7,
+        category: DISCOURSE_CATEGORY_ID,
         raw: storyIntro + getStoryHtml(story),
     };
 
