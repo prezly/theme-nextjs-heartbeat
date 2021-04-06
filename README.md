@@ -7,6 +7,8 @@ To style the newsroom we're using [TailwindCSS](https://tailwindcss.com/) with t
 
 The newsroom is running within our own infrastructure and guarded by admin login/password combo.
 
+![heartbeat newsroom](https://github.com/prezly/theme-nextjs-heartbeat/blob/main/heartbeat_homepage.png?raw=true)
+
 ## Features
 
 ### Content/Newsroom features
