@@ -23,7 +23,9 @@ const DiscourseComments: FunctionComponent<Props> = ({ topicId }) => {
     }, []);
 
     return (
-        <div id="discourse-comments" />
+        <div>
+            <div id="discourse-comments" />
+        </div>
     );
 };
 
