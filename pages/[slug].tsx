@@ -30,8 +30,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const { DISCOURSE_API_URL } = getEnvVariables(context.req);
     const topicId = DISCOURSE_API_URL ? await syncDiscourseThread(getEnvVariables(context.req), story) : null;
 
-    console.log(topicId);
-
     return {
         props: {
             story,
