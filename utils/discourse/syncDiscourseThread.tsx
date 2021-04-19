@@ -66,9 +66,12 @@ const createTopicForStory = async (env: Env, story: ExtendedStory) => {
 };
 
 const syncDiscourseThread = async (env: Env, story: ExtendedStory) => {
-    const discourseTopic = await findTopicByTitle(env, story.title) || await createTopicForStory(env, story);
+    // only sync posts after march
+    if (story.published_at > '2021-03-01T00:00:01+00:00') {
+        const discourseTopic = await findTopicByTitle(env, story.title) || await createTopicForStory(env, story);
 
-    return discourseTopic?.id;
+        return discourseTopic?.id;
+    }
 };
 
 export default syncDiscourseThread;
