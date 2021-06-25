@@ -18,7 +18,7 @@
     "@prezly/slate-renderer": "^0.1.2",
     "@prezly/slate-types": "^0.1.2",
     "@tailwindcss/typography": "^0.4.0",
-    "next": "latest",
+    "next": "^10.2.3",
     "next-seo": "^4.24.0",
     "node-fetch": "^2.6.1",
     "parse-data-url": "^4.0.1",
