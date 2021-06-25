@@ -34,10 +34,10 @@ const getEnvVariables = (req?: IncomingMessage): Env => {
 
     if (httpEnvHeader && req) {
         const httpEnv = decodeHttpEnv(httpEnvHeader);
-        return { ...process.env, ...httpEnv };
+        return { ...process.env, ...httpEnv } as Env;
     }
 
-    return { ...process.env };
+    return { ...process.env } as Env;
 };
 
 export default getEnvVariables;
