@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'react';
-import { Node, Renderer, Options } from '@prezly/slate-renderer';
-import '@prezly/slate-renderer/build/styles.css';
+import { Node, Renderer, Options } from '@prezly/content-renderer-react-js';
+import '@prezly/content-renderer-react-js/build/styles.css';
 import {
     BULLETED_LIST_NODE_TYPE,
     HEADING_1_NODE_TYPE,
