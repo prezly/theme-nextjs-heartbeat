@@ -2,7 +2,7 @@ import type { FunctionComponent } from 'react';
 import Link from 'next/link';
 import ReadingTime from 'reading-time';
 import type { ExtendedStory } from '@prezly/sdk/dist/types';
-import Image from '@/components/Image';
+import Image from '@prezly/uploadcare-image';
 
 type Props = {
     story: ExtendedStory;
