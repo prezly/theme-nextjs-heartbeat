@@ -17,6 +17,7 @@
     "@prezly/content-renderer-react-js": "^0.13.0",
     "@prezly/sdk": "^6.16.0",
     "@prezly/slate-types": "^0.23.3",
+    "@sentry/nextjs": "^6.18.2",
     "@tailwindcss/typography": "^0.5.2",
     "next": "^12.1.0",
     "next-seo": "^5.1.0",
