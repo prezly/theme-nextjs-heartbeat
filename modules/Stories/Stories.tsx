@@ -4,8 +4,8 @@ import StoryCard from 'modules/Stories/StoryCard';
 
 type Props = {
     stories: ExtendedStory[];
-    title?: string
-    description?: string
+    title?: string;
+    description?: string | null;
 };
 
 const Stories: FunctionComponent<Props> = ({ title, description, stories }) => (
@@ -21,7 +21,7 @@ const Stories: FunctionComponent<Props> = ({ title, description, stories }) => (
             </div>
             <div className="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
                 {stories.map((story) => (
-                    <StoryCard story={story} />
+                    <StoryCard key={story.uuid} story={story} />
                 ))}
             </div>
         </div>

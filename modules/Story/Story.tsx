@@ -1,7 +1,7 @@
 import type { FunctionComponent } from 'react';
 import type { ExtendedStory } from '@prezly/sdk/dist/types';
 import SlateRenderer from 'components/SlateRenderer';
-import { FormatVersion } from '@prezly/sdk/dist/types/Story';
+import { StoryFormatVersion } from '@prezly/sdk/dist/types/Story';
 import { StorySeo } from '@/components/seo';
 import DiscourseComments from './DiscourseComments';
 
@@ -111,11 +111,11 @@ const Story: FunctionComponent<Props> = ({ story, topicId }) => {
                         </p>
                     </div>
                     <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
-                        {format_version === FormatVersion.HTML && (
+                        {format_version === StoryFormatVersion.HTML && (
                         // eslint-disable-next-line react/no-danger
                             <div dangerouslySetInnerHTML={{ __html: content as string }} />
                         )}
-                        {format_version === FormatVersion.SLATEJS && (
+                        {format_version === StoryFormatVersion.SLATEJS && (
                             <SlateRenderer nodes={JSON.parse(content as string)} />
                         )}
 

@@ -1,5 +1,5 @@
 module.exports = {
-    content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './modules/**/*.{js,ts,jsx,tsx}'],
+    content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './modules/**/*.{ts,tsx}'],
     darkMode: 'media',
     theme: {
         container: {
@@ -14,6 +14,7 @@ module.exports = {
         extend: {},
     },
     plugins: [
+        // eslint-disable-next-line import/no-extraneous-dependencies
         require('@tailwindcss/typography'),
     ],
 };
