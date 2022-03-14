@@ -1,18 +1,20 @@
 import type { FunctionComponent } from 'react';
-import { Node, Renderer, Options } from '@prezly/content-renderer-react-js';
-import '@prezly/content-renderer-react-js/build/styles.css';
+import type { ComponentRenderers } from '@prezly/content-renderer-react-js';
+import { Renderer } from '@prezly/content-renderer-react-js';
+import type { Node } from '@prezly/slate-types';
 import {
     BULLETED_LIST_NODE_TYPE,
     HEADING_1_NODE_TYPE,
     HEADING_2_NODE_TYPE, LIST_ITEM_NODE_TYPE, LIST_ITEM_TEXT_NODE_TYPE, NUMBERED_LIST_NODE_TYPE,
     PARAGRAPH_NODE_TYPE,
 } from '@prezly/slate-types';
+import '@prezly/content-renderer-react-js/styles.css';
 
 interface Props {
     nodes: Node | Node[];
 }
 
-const options: Options = {
+const components: ComponentRenderers = {
     [LIST_ITEM_TEXT_NODE_TYPE]: ({ children }) => <>{children}</>,
     [LIST_ITEM_NODE_TYPE]: ({ children }) => <li>{children}</li>,
     [BULLETED_LIST_NODE_TYPE]: ({ children }) => <ul>{children}</ul>,
@@ -28,7 +30,7 @@ const options: Options = {
 };
 
 const SlateRenderer: FunctionComponent<Props> = ({ nodes }) => (
-    <Renderer nodes={nodes} options={options} />
+    <Renderer nodes={nodes} components={components} />
 );
 
 export default SlateRenderer;

@@ -1,20 +1,19 @@
 module.exports = {
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './modules/**/*.{js,ts,jsx,tsx}'],
-  darkMode: false, // or 'media' or 'class'
-  theme: {
-    container: {
-      center: true,
-
-      padding: {
-        DEFAULT: "1rem",
-      },
+    content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './modules/**/*.{js,ts,jsx,tsx}'],
+    darkMode: 'media',
+    theme: {
+        container: {
+            center: true,
+            padding: {
+                DEFAULT: '1rem',
+            },
+        },
+        extend: {},
     },
-    extend: {},
-  },
-  variants: {
-    extend: {},
-  },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
-}
+    variants: {
+        extend: {},
+    },
+    plugins: [
+        require('@tailwindcss/typography'),
+    ],
+};
