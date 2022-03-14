@@ -11,7 +11,12 @@ FROM node:lts-alpine AS builder
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
-RUN npm run build
+
+RUN --mount=type=secret,id=NEXT_PUBLIC_SENTRY_DSN \
+    export NEXT_PUBLIC_SENTRY_DSN=$(cat /run/secrets/NEXT_PUBLIC_SENTRY_DSN) && \
+    export SENTRY_ORG="prezly" && \
+    export SENTRY_PROJECT="theme-nextjs-heartbeat" && \
+    npm run build
 
 # Production image, copy all the files and run next
 FROM node:lts-alpine AS runner
