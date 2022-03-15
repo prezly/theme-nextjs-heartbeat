@@ -2,6 +2,7 @@
 
 # IDE
 .idea
+.vscode
 
 # dependencies
 /node_modules
@@ -36,3 +37,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# Sentry
+.sentryclirc

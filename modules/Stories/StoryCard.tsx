@@ -2,14 +2,14 @@ import type { FunctionComponent } from 'react';
 import Link from 'next/link';
 import ReadingTime from 'reading-time';
 import type { ExtendedStory } from '@prezly/sdk/dist/types';
-import Image from '@/components/Image';
+import Image from '@prezly/uploadcare-image';
 
 type Props = {
     story: ExtendedStory;
 };
 
 const StoryCard: FunctionComponent<Props> = ({ story }) => {
-    const { preview_image, header_image, social_image } = story;
+    const { preview_image, header_image, social_image, published_at } = story;
     let imageToUse = preview_image;
     if (!preview_image && social_image) {
         imageToUse = social_image;
@@ -23,7 +23,7 @@ const StoryCard: FunctionComponent<Props> = ({ story }) => {
         imageToUse = JSON.parse(imageToUse);
     }
 
-    const publicationDate = new Date(story.published_at);
+    const publicationDate = published_at ? new Date(published_at) : undefined;
     const readingTime = ReadingTime(story.content as string);
 
     return (
@@ -76,7 +76,7 @@ const StoryCard: FunctionComponent<Props> = ({ story }) => {
                         <div className="mt-6 flex items-center">
                             <div className="flex space-x-1 text-sm text-gray-500">
                                 <time dateTime="2020-03-16">
-                                    {publicationDate.toLocaleDateString()}
+                                    {publicationDate?.toLocaleDateString()}
                                 </time>
                                 <span aria-hidden="true">
                                     &middot;

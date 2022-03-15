@@ -14,7 +14,7 @@ module.exports = {
         sourceType: 'module',
         project: ['./tsconfig.json'],
     },
-    plugins: ['react', '@typescript-eslint'],
+    plugins: ['react', '@typescript-eslint', 'import', 'jsx-a11y'],
     rules: {
         'max-len': ['warn', { code: 120 }],
         'react/react-in-jsx-scope': 'off',

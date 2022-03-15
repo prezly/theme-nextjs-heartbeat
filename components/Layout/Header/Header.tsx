@@ -50,11 +50,11 @@ const Header: FunctionComponent<Props> = ({ categories }) => {
                             menuOpen && (
                                 <div className="absolute z-10 -top-2 md:top-8 right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-80">
                                     <div className="px-2 py-2 bg-white rounded-md shadow">
-                                        {categories.map((category) => {
+                                        {categories?.map((category) => {
                                             const locales = Object.keys(category.i18n);
                                             const locale = locales.filter((l) => !!category.i18n[l].slug)[0] || locales[0];
                                             return (
-                                                <Link href={`/category/${category.i18n[locale].slug}`}>
+                                                <Link key={category.id} href={`/category/${category.i18n[locale].slug}`}>
                                                     <a
                                                         className="block px-4 py-2 bg-transparent rounded-lg md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                                     >

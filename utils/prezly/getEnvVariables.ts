@@ -36,9 +36,11 @@ const getEnvVariables = (req?: IncomingMessage): Env => {
     if (headerName && req) {
         const header = req.headers[headerName] as string | undefined;
         const httpEnv = decodeHttpEnv(header || '');
+        // @ts-ignore
         return { ...process.env, ...httpEnv };
     }
 
+    // @ts-ignore
     return { ...process.env };
 };
 

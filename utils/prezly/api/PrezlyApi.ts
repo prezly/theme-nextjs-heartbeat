@@ -118,7 +118,7 @@ export default class PrezlyApi {
         return categories.find((category) => Object.values(category.i18n).some((t) => t.slug === slug));
     }
 
-    searchStories(options: StoriesSearchRequest) {
+    searchStories(options: StoriesSearchRequest<[]>) {
         return this.sdk.stories.search(options);
     }
 }

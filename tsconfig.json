@@ -4,6 +4,7 @@
     "alwaysStrict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "incremental": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "lib": ["dom", "es2019"],
@@ -15,7 +16,7 @@
     "noUnusedParameters": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
     "target": "esnext",
     "baseUrl": ".",
     "paths": {
@@ -23,13 +24,15 @@
       "@/modules/*": ["modules/*"],
       "@/utils/*": ["utils/*"],
       "@/public/*": ["public/*"]
-    },
+    }
   },
   "exclude": ["node_modules"],
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".eslintrc.js"
+    ".eslintrc.js",
+    "postcss.config.js",
+    "tailwind.config.js",
   ]
 }
