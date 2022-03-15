@@ -13,7 +13,9 @@ COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 
 RUN --mount=type=secret,id=NEXT_PUBLIC_SENTRY_DSN \
+    --mount=type=secret,id=SENTRY_AUTH_TOKEN \
     export NEXT_PUBLIC_SENTRY_DSN=$(cat /run/secrets/NEXT_PUBLIC_SENTRY_DSN) && \
+    export SENTRY_AUTH_TOKEN=$(cat /run/secrets/SENTRY_AUTH_TOKEN) && \
     export SENTRY_ORG="prezly" && \
     export SENTRY_PROJECT="theme-nextjs-heartbeat" && \
     npm run build
