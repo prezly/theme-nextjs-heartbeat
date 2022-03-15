@@ -1,7 +1,7 @@
 import type { FunctionComponent } from 'react';
 import type { ExtendedStory } from '@prezly/sdk/dist/types';
 import SlateRenderer from 'components/SlateRenderer';
-import { StoryFormatVersion } from '@prezly/sdk/dist/types/Story';
+import { StoryFormatVersion } from '@prezly/sdk';
 import { StorySeo } from '@/components/seo';
 import DiscourseComments from './DiscourseComments';
 
