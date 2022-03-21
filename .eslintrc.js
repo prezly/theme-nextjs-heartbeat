@@ -1,46 +1,26 @@
 module.exports = {
-    env: {
-        browser: true,
-        es2021: true,
-        node: true,
-    },
-    extends: ['plugin:react/recommended', 'airbnb-typescript'],
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
-        ecmaFeatures: {
-            jsx: true,
-        },
-        ecmaVersion: 12,
-        sourceType: 'module',
-        project: ['./tsconfig.json'],
-    },
-    plugins: ['react', '@typescript-eslint', 'import', 'jsx-a11y'],
+    extends: ['@prezly', '@prezly/eslint-config/react', '@prezly/eslint-config/nextjs'],
     rules: {
-        'max-len': ['warn', { code: 120 }],
-        'react/react-in-jsx-scope': 'off',
-        'react/prop-types': 'off',
-        'react/jsx-filename-extension': ['warn', { extensions: ['.tsx'] }],
-        'react/jsx-indent': ['error', 4],
-        'react/jsx-indent-props': ['error', 4],
-        'import/extensions': [
+        // TODO: NextJS Dynamic import doesn't work too well with named exports.
+        // Gotta figure out how to make them work together.
+        // Some hints here: https://github.com/vercel/next.js/issues/22278#issuecomment-1009865850
+        'import/no-default-export': 'off',
+        'no-restricted-exports': 'off',
+
+        'jsx-a11y/label-has-associated-control': [
             'warn',
             {
-                ts: 'never',
-                tsx: 'never',
+                assert: 'either',
+                controlComponents: ['Field'],
             },
         ],
-        indent: ['error', 4],
-        '@typescript-eslint/naming-convention': [
-            'warn',
+
+        // Extra rules
+        'react/jsx-props-no-spreading': [
+            'error',
             {
-                selector: 'variable',
-                format: ['snake_case', 'PascalCase', 'strictCamelCase', 'UPPER_CASE'], // snake_case enabled for Slate types
+                exceptions: ['FormattedMessage'],
             },
         ],
-        '@typescript-eslint/indent': ['error', 4],
-        'jsx-a11y/anchor-is-valid': 'off', // next links break this rule
-        radix: 'off',
-        'no-return-assign': 'off',
-        'import/prefer-default-export': 'off',
     },
 };
