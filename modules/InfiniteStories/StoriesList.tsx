@@ -1,5 +1,5 @@
 import { StoryCard } from '@/components';
-import { StoryWithImage } from 'types';
+import type { StoryWithImage } from 'types';
 
 interface Props {
     stories: StoryWithImage[];

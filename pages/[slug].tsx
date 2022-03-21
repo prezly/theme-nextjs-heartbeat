@@ -1,11 +1,12 @@
-import { 
-    useCurrentStory, 
-    getPrezlyApi, 
-    getEnvVariables, 
+import {
+    getEnvVariables,
     getNewsroomServerSideProps,
+    getPrezlyApi,
     processRequest,
+    useCurrentStory,
 } from '@prezly/theme-kit-nextjs';
-import { GetServerSideProps } from 'next';
+import type { GetServerSideProps } from 'next';
+
 import { Story } from '@/modules/Story';
 import { syncDiscourseThread } from '@/utils';
 

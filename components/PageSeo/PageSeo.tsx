@@ -10,14 +10,7 @@ interface Props {
     url: string;
 }
 
-export function PageSeo({
-    description,
-    imageUrl,
-    locale,
-    siteName,
-    title,
-    url,
-}: Props) {
+export function PageSeo({ description, imageUrl, locale, siteName, title, url }: Props) {
     return (
         <NextSeo
             title={title}

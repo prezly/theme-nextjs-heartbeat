@@ -1,8 +1,8 @@
+import Image from '@prezly/uploadcare-image';
 import Link from 'next/link';
 import ReadingTime from 'reading-time';
-import Image from '@prezly/uploadcare-image';
 
-import { StoryWithImage } from 'types';
+import type { StoryWithImage } from 'types';
 
 import { getStoryThumbnail } from './lib';
 
@@ -21,8 +21,7 @@ export function StoryCard({ story }: Props) {
         <Link href={`/${story.slug}`} passHref>
             <a className="flex flex-col rounded-lg shadow-lg overflow-hidden lg:h-full">
                 <div className="flex-shrink-0">
-                    {image
-                    && (
+                    {image && (
                         <Image
                             lazy
                             imageDetails={image}
@@ -53,9 +52,7 @@ export function StoryCard({ story }: Props) {
                                 </span>
                             ))}
                         </div>
-                        <h3 className="text-xl font-semibold text-gray-900">
-                            {title}
-                        </h3>
+                        <h3 className="text-xl font-semibold text-gray-900">{title}</h3>
                         {subtitle && (
                             <p className="mt-3 text-base text-gray-500 max-h-12 overflow-hidden text-ellipsis">
                                 {subtitle}
@@ -67,12 +64,8 @@ export function StoryCard({ story }: Props) {
                             <time dateTime="2020-03-16">
                                 {publicationDate?.toLocaleDateString()}
                             </time>
-                            <span aria-hidden="true">
-                                &middot;
-                            </span>
-                            <span>
-                                {readingTime.text}
-                            </span>
+                            <span aria-hidden="true">&middot;</span>
+                            <span>{readingTime.text}</span>
                         </div>
                     </div>
                 </div>

@@ -18,7 +18,7 @@ export function Category({ pagination, stories }: Props) {
     }
 
     return (
-        <Layout 
+        <Layout
             title={currentCategory.display_name}
             description={currentCategory.display_description || undefined}
         >

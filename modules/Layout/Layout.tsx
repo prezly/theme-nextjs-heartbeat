@@ -27,10 +27,10 @@ const DEFAULT_DESCRIPTION = `
     strategy decisions or weekly company updates.
 `;
 
-export function Layout({ 
-    children, 
-    description = DEFAULT_DESCRIPTION, 
-    imageUrl, 
+export function Layout({
+    children,
+    description = DEFAULT_DESCRIPTION,
+    imageUrl,
     title = DEFAULT_TITLE,
 }: PropsWithChildren<Props>) {
     const currentLocale = useCurrentLocale();

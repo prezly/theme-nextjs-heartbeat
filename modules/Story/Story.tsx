@@ -1,25 +1,25 @@
-import type { ExtendedStory } from '@prezly/sdk/dist/types';
 import { StoryFormatVersion } from '@prezly/sdk';
+import type { ExtendedStory } from '@prezly/sdk/dist/types';
+import dynamic from 'next/dynamic';
 
-import { SlateRenderer } from '@/components';
 import { StorySeo } from '@/components';
 import { Layout } from '@/modules/Layout';
 
-import DiscourseComments from './DiscourseComments';
+import { DiscourseComments } from './DiscourseComments';
 
 type Props = {
     story: ExtendedStory;
-    topicId?: number
+    topicId?: number;
 };
+
+const SlateRenderer = dynamic(() => import('@/components/SlateRenderer'), { ssr: true });
 
 export function Story({ story, topicId }: Props) {
     if (!story) {
         return null;
     }
 
-    const {
-        title, subtitle, format_version, content,
-    } = story;
+    const { title, subtitle, format_version, content } = story;
 
     return (
         <Layout>
@@ -43,10 +43,21 @@ export function Story({ story, topicId }: Props) {
                                     height="20"
                                     patternUnits="userSpaceOnUse"
                                 >
-                                    <rect x="0" y="0" width="4" height="4" className="text-gray-200" fill="currentColor" />
+                                    <rect
+                                        x="0"
+                                        y="0"
+                                        width="4"
+                                        height="4"
+                                        className="text-gray-200"
+                                        fill="currentColor"
+                                    />
                                 </pattern>
                             </defs>
-                            <rect width="404" height="384" fill="url(#74b3fd99-0a6f-4271-bef2-e80eeafdf357)" />
+                            <rect
+                                width="404"
+                                height="384"
+                                fill="url(#74b3fd99-0a6f-4271-bef2-e80eeafdf357)"
+                            />
                         </svg>
                         <svg
                             className="absolute top-1/2 right-full transform -translate-y-1/2 -translate-x-32"
@@ -64,10 +75,21 @@ export function Story({ story, topicId }: Props) {
                                     height="20"
                                     patternUnits="userSpaceOnUse"
                                 >
-                                    <rect x="0" y="0" width="4" height="4" className="text-gray-200" fill="currentColor" />
+                                    <rect
+                                        x="0"
+                                        y="0"
+                                        width="4"
+                                        height="4"
+                                        className="text-gray-200"
+                                        fill="currentColor"
+                                    />
                                 </pattern>
                             </defs>
-                            <rect width="404" height="384" fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)" />
+                            <rect
+                                width="404"
+                                height="384"
+                                fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)"
+                            />
                         </svg>
                         <svg
                             className="absolute bottom-12 left-full transform translate-x-32"
@@ -85,10 +107,21 @@ export function Story({ story, topicId }: Props) {
                                     height="20"
                                     patternUnits="userSpaceOnUse"
                                 >
-                                    <rect x="0" y="0" width="4" height="4" className="text-gray-200" fill="currentColor" />
+                                    <rect
+                                        x="0"
+                                        y="0"
+                                        width="4"
+                                        height="4"
+                                        className="text-gray-200"
+                                        fill="currentColor"
+                                    />
                                 </pattern>
                             </defs>
-                            <rect width="404" height="384" fill="url(#d3eb07ae-5182-43e6-857d-35c643af9034)" />
+                            <rect
+                                width="404"
+                                height="384"
+                                fill="url(#d3eb07ae-5182-43e6-857d-35c643af9034)"
+                            />
                         </svg>
                     </div>
                 </div>
@@ -103,28 +136,22 @@ export function Story({ story, topicId }: Props) {
                             </span>
                         ))}
 
-                        <h1
-                            className="mt-2 block text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"
-                        >
+                        <h1 className="mt-2 block text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                             {title}
                         </h1>
-                        <p className="mt-8 text-xl text-gray-500 leading-8">
-                            {subtitle}
-                        </p>
+                        <p className="mt-8 text-xl text-gray-500 leading-8">{subtitle}</p>
                     </div>
                     <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
                         {format_version === StoryFormatVersion.HTML && (
-                        // eslint-disable-next-line react/no-danger
+                            // eslint-disable-next-line react/no-danger
                             <div dangerouslySetInnerHTML={{ __html: content as string }} />
                         )}
                         {format_version === StoryFormatVersion.SLATEJS && (
                             <SlateRenderer nodes={JSON.parse(content as string)} />
                         )}
 
-                        {topicId
-                            && <DiscourseComments topicId={topicId} />}
+                        {topicId && <DiscourseComments topicId={topicId} />}
                     </div>
-
                 </div>
             </article>
         </Layout>

@@ -21,6 +21,7 @@
     "baseUrl": ".",
     "paths": {
       "@/components": ["components/"],
+      "@/components/*": ["components/*"],
       "@/modules/*": ["modules/*"],
       "@/hooks": ["hooks/"],
       "@/utils": ["utils/"],
@@ -36,6 +37,6 @@
     ".eslintrc.js",
     "next.config.js",
     "postcss.config.js",
-    "tailwind.config.js",
+    "tailwind.config.js"
   ]
 }

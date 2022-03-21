@@ -1,7 +1,6 @@
 import { InfiniteStories } from '@/modules/InfiniteStories';
 import { Layout } from '@/modules/Layout';
-import { PaginationProps, StoryWithImage } from 'types';
-
+import type { PaginationProps, StoryWithImage } from 'types';
 
 type Props = {
     stories: StoryWithImage[];

@@ -1,14 +1,17 @@
-import { GetServerSideProps } from 'next';
-import { DEFAULT_PAGE_SIZE, getNewsroomServerSideProps, processRequest } from '@prezly/theme-kit-nextjs';
+import {
+    DEFAULT_PAGE_SIZE,
+    getNewsroomServerSideProps,
+    processRequest,
+} from '@prezly/theme-kit-nextjs';
+import type { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
 
-import { PaginationProps, StoryWithImage } from 'types';
+import type { PaginationProps, StoryWithImage } from 'types';
 
 interface Props {
     stories: StoryWithImage[];
     pagination: PaginationProps;
 }
-
 
 const Category = dynamic(() => import('@/modules/Category'), { ssr: true });
 
@@ -18,7 +21,7 @@ function CategoryPage({ stories, pagination }: Props) {
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
     const { api, serverSideProps } = await getNewsroomServerSideProps(context);
-    
+
     const { slug } = context.params as { slug: string };
     const category = await api.getCategoryBySlug(slug);
 

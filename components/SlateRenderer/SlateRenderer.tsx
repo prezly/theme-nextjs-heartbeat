@@ -1,11 +1,13 @@
-import type { FunctionComponent } from 'react';
 import type { ComponentRenderers } from '@prezly/content-renderer-react-js';
 import { Renderer } from '@prezly/content-renderer-react-js';
 import type { Node } from '@prezly/slate-types';
 import {
     BULLETED_LIST_NODE_TYPE,
     HEADING_1_NODE_TYPE,
-    HEADING_2_NODE_TYPE, LIST_ITEM_NODE_TYPE, LIST_ITEM_TEXT_NODE_TYPE, NUMBERED_LIST_NODE_TYPE,
+    HEADING_2_NODE_TYPE,
+    LIST_ITEM_NODE_TYPE,
+    LIST_ITEM_TEXT_NODE_TYPE,
+    NUMBERED_LIST_NODE_TYPE,
     PARAGRAPH_NODE_TYPE,
 } from '@prezly/slate-types';
 import '@prezly/content-renderer-react-js/styles.css';
@@ -25,12 +27,12 @@ const components: ComponentRenderers = {
     [HEADING_1_NODE_TYPE]: ({ children }) => <h2>{children}</h2>,
     [HEADING_2_NODE_TYPE]: ({ children }) => <h3>{children}</h3>,
     // [LINK_NODE_TYPE]: ({ children, node }) => <a href={node.href}>{children}</a>,
-    [PARAGRAPH_NODE_TYPE]: ({ children }) => (<p>{children}</p>),
+    [PARAGRAPH_NODE_TYPE]: ({ children }) => <p>{children}</p>,
     // [QUOTE_NODE_TYPE]: ({ children }) => <blockquote>{children}</blockquote>,
 };
 
-const SlateRenderer: FunctionComponent<Props> = ({ nodes }) => (
-    <Renderer nodes={nodes} components={components} />
-);
+function SlateRenderer({ nodes }: Props) {
+    return <Renderer nodes={nodes} components={components} />;
+}
 
 export default SlateRenderer;
