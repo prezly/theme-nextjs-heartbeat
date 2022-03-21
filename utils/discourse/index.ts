@@ -1,0 +1,1 @@
+export { syncDiscourseThread } from './syncDiscourseThread';

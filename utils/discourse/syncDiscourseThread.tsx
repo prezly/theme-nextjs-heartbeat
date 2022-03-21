@@ -1,10 +1,9 @@
 import { StoryFormatVersion } from '@prezly/sdk';
 import ReactDOMServer from 'react-dom/server';
-import SlateRenderer from '@/components/SlateRenderer';
+import { SlateRenderer } from '@/components';
 import type { ExtendedStory } from '@prezly/sdk/dist/types';
-import { Env } from 'types';
 
-const findTopicByTitle = async (env: Env, title: string) => {
+const findTopicByTitle = async (env: NodeJS.ProcessEnv, title: string) => {
     const {
         DISCOURSE_API_URL, DISCOURSE_API_KEY, DISCOURSE_USERNAME, DISCOURSE_CATEGORY_ID,
     } = env;
@@ -32,7 +31,7 @@ const getStoryHtml = (story: ExtendedStory) : string => {
     return '';
 };
 
-const createTopicForStory = async (env: Env, story: ExtendedStory) => {
+const createTopicForStory = async (env: NodeJS.ProcessEnv, story: ExtendedStory) => {
     const {
         DISCOURSE_API_URL, DISCOURSE_API_KEY, DISCOURSE_USERNAME, DISCOURSE_CATEGORY_ID,
     } = env;
@@ -65,7 +64,7 @@ const createTopicForStory = async (env: Env, story: ExtendedStory) => {
     return response_create.json();
 };
 
-const syncDiscourseThread = async (env: Env, story: ExtendedStory) => {
+export const syncDiscourseThread = async (env: NodeJS.ProcessEnv, story: ExtendedStory) => {
     // only sync posts after march
     if (story.published_at && story.published_at > '2021-03-01T00:00:01+00:00') {
         const discourseTopic = await findTopicByTitle(env, story.title) || await createTopicForStory(env, story);
@@ -73,5 +72,3 @@ const syncDiscourseThread = async (env: Env, story: ExtendedStory) => {
         return discourseTopic?.id;
     }
 };
-
-export default syncDiscourseThread;

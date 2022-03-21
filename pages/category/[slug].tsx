@@ -1,42 +1,27 @@
-import type { FunctionComponent } from 'react';
 import { GetServerSideProps } from 'next';
-import { getPrezlyApi } from '@/utils/prezly';
-import Layout from '@/components/Layout';
-import Stories from '@/modules/Stories';
-import { Category, ExtendedStory, Newsroom } from '@prezly/sdk/dist/types';
-import { PageSeo } from '@/components/seo';
-import getAssetsUrl from '@/utils/prezly/getAssetsUrl';
+import { Story } from '@prezly/sdk/dist/types';
+import { DEFAULT_PAGE_SIZE, getNewsroomServerSideProps, processRequest } from '@prezly/theme-kit-nextjs';
+import dynamic from 'next/dynamic';
 
-type Props = {
-    stories: ExtendedStory[];
-    category: Category;
-    categories: Category[];
-    newsroom: Newsroom;
-    slug: string;
-};
+import { PaginationProps } from 'types';
 
-const IndexPage: FunctionComponent<Props> = ({
-    category, stories, categories, slug, newsroom,
-}) => (
-    <>
-        <PageSeo
-            title={category.display_name}
-            description={category.display_description as string}
-            url={`${newsroom.url}/category/${slug}`}
-            imageUrl={getAssetsUrl(newsroom.newsroom_logo?.uuid as string)}
-        />
-        <Layout categories={categories}>
-            <Stories stories={stories} title={category.display_name} description={category.display_description} />
-        </Layout>
-    </>
-);
+interface Props {
+    stories: Story[];
+    pagination: PaginationProps;
+}
+
+
+const Category = dynamic(() => import('@/modules/Category'), { ssr: true });
+
+function CategoryPage({ stories, pagination }: Props) {
+    return <Category stories={stories} pagination={pagination} />;
+}
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
-    const api = getPrezlyApi(context.req);
+    const { api, serverSideProps } = await getNewsroomServerSideProps(context);
+    
     const { slug } = context.params as { slug: string };
-    const categories = await api.getCategories();
     const category = await api.getCategoryBySlug(slug);
-    const newsroom = await api.getNewsroom();
 
     if (!category) {
         return {
@@ -44,17 +29,32 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
         };
     }
 
-    const stories = await api.getStoriesExtendedFromCategory(category);
+    const page =
+        context.query.page && typeof context.query.page === 'string'
+            ? Number(context.query.page)
+            : undefined;
 
-    return {
-        props: {
+    const { stories, storiesTotal } = await api.getStoriesFromCategory(category, {
+        page,
+    });
+
+    return processRequest(
+        context,
+        {
+            ...serverSideProps,
+            newsroomContextProps: {
+                ...serverSideProps.newsroomContextProps,
+                currentCategory: category,
+            },
             stories,
-            category,
-            categories,
-            newsroom,
-            slug,
+            pagination: {
+                itemsTotal: storiesTotal,
+                currentPage: page ?? 1,
+                pageSize: DEFAULT_PAGE_SIZE,
+            },
         },
-    };
+        `/category/${slug}`,
+    );
 };
 
-export default IndexPage;
+export default CategoryPage;

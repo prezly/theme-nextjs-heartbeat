@@ -1,42 +1,57 @@
-import type { Category, ExtendedStory } from '@prezly/sdk/dist/types';
-import { GetServerSideProps, NextPage } from 'next';
-import { getEnvVariables, getPrezlyApi } from '@/utils/prezly';
-import Story from '@/modules/Story';
-import Layout from '@/components/Layout';
-import syncDiscourseThread from '@/utils/discourse/syncDiscourseThread';
+import { 
+    useCurrentStory, 
+    getPrezlyApi, 
+    getEnvVariables, 
+    getNewsroomServerSideProps,
+    processRequest,
+} from '@prezly/theme-kit-nextjs';
+import { GetServerSideProps } from 'next';
+import { Story } from '@/modules/Story';
+import { syncDiscourseThread } from '@/utils';
 
 type Props = {
-    story: ExtendedStory;
-    categories: Category[];
     topicId?: number;
 };
 
-const StoryPage: NextPage<Props> = ({ story, categories, topicId }) => (
-    <Layout categories={categories}>
-        <Story story={story} topicId={topicId} />
-    </Layout>
-);
+function StoryPage({ topicId }: Props) {
+    const currentStory = useCurrentStory();
+
+    if (!currentStory) {
+        return null;
+    }
+
+    return <Story story={currentStory} topicId={topicId} />;
+}
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const api = getPrezlyApi(context.req);
+
     const { slug } = context.params as { slug?: string };
     const story = slug ? await api.getStoryBySlug(slug) : null;
 
     if (!story) {
         return { notFound: true };
     }
-    const categories = await api.getCategories();
 
-    const { DISCOURSE_API_URL } = getEnvVariables(context.req);
-    const topicId = DISCOURSE_API_URL ? await syncDiscourseThread(getEnvVariables(context.req), story) : null;
+    // We are passing the story object to detect locale from the story itself
+    // since the locale code is not part of the URL (e.g. /my-story).
+    const { serverSideProps } = await getNewsroomServerSideProps(context, { story });
 
-    return {
-        props: {
-            story,
-            categories,
-            topicId,
+    // TODO: Add generic type to theme-kit-nextjs
+    const env = getEnvVariables(context.req);
+    // @ts-expect-error
+    const { DISCOURSE_API_URL } = env;
+    // @ts-expect-error
+    const topicId = DISCOURSE_API_URL ? await syncDiscourseThread(env, story) : null;
+
+    return processRequest(context, {
+        ...serverSideProps,
+        newsroomContextProps: {
+            ...serverSideProps.newsroomContextProps,
+            currentStory: story,
         },
-    };
+        topicId,
+    });
 };
 
 export default StoryPage;

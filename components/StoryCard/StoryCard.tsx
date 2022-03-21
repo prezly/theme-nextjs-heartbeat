@@ -1,14 +1,14 @@
-import type { FunctionComponent } from 'react';
 import Link from 'next/link';
 import ReadingTime from 'reading-time';
-import type { ExtendedStory } from '@prezly/sdk/dist/types';
+import type { Story } from '@prezly/sdk';
 import Image from '@prezly/uploadcare-image';
 
 type Props = {
-    story: ExtendedStory;
+    story: Story;
 };
 
-const StoryCard: FunctionComponent<Props> = ({ story }) => {
+export function StoryCard({ story }: Props) {
+    // @ts-expect-error
     const { preview_image, header_image, social_image, published_at } = story;
     let imageToUse = preview_image;
     if (!preview_image && social_image) {
@@ -24,7 +24,8 @@ const StoryCard: FunctionComponent<Props> = ({ story }) => {
     }
 
     const publicationDate = published_at ? new Date(published_at) : undefined;
-    const readingTime = ReadingTime(story.content as string);
+    // @ts-expect-error
+    const readingTime = ReadingTime(story.content || '');
 
     return (
         <Link key={story.id} href={`/${story.slug}`} passHref>
@@ -91,6 +92,4 @@ const StoryCard: FunctionComponent<Props> = ({ story }) => {
             </a>
         </Link>
     );
-};
-
-export default StoryCard;
+}

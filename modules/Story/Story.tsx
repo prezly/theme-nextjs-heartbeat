@@ -1,8 +1,10 @@
-import type { FunctionComponent } from 'react';
 import type { ExtendedStory } from '@prezly/sdk/dist/types';
-import SlateRenderer from 'components/SlateRenderer';
 import { StoryFormatVersion } from '@prezly/sdk';
-import { StorySeo } from '@/components/seo';
+
+import { SlateRenderer } from '@/components';
+import { StorySeo } from '@/components';
+import { Layout } from '@/modules/Layout';
+
 import DiscourseComments from './DiscourseComments';
 
 type Props = {
@@ -10,7 +12,7 @@ type Props = {
     topicId?: number
 };
 
-const Story: FunctionComponent<Props> = ({ story, topicId }) => {
+export function Story({ story, topicId }: Props) {
     if (!story) {
         return null;
     }
@@ -20,7 +22,7 @@ const Story: FunctionComponent<Props> = ({ story, topicId }) => {
     } = story;
 
     return (
-        <>
+        <Layout>
             <StorySeo story={story} />
             <article className="relative py-16 bg-white overflow-hidden">
                 <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
@@ -125,8 +127,6 @@ const Story: FunctionComponent<Props> = ({ story, topicId }) => {
 
                 </div>
             </article>
-        </>
+        </Layout>
     );
-};
-
-export default Story;
+}
