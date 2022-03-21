@@ -21,7 +21,7 @@ async function fetchStories(
             page,
             pageSize,
             category,
-            include: ['thumbnail_image'],
+            include: ['thumbnail_image', 'content'],
             ...(locale && {
                 localeCode: locale.toUnderscoreCode(),
             }),
