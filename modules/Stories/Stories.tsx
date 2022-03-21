@@ -1,12 +1,10 @@
-import type { Story } from '@prezly/sdk';
-
 import { InfiniteStories } from '@/modules/InfiniteStories';
 import { Layout } from '@/modules/Layout';
-import { PaginationProps } from 'types';
+import { PaginationProps, StoryWithImage } from 'types';
 
 
 type Props = {
-    stories: Story[];
+    stories: StoryWithImage[];
     pagination: PaginationProps;
 };
 

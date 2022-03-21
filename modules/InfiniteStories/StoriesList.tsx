@@ -1,9 +1,8 @@
-import type { Story } from '@prezly/sdk';
-
 import { StoryCard } from '@/components';
+import { StoryWithImage } from 'types';
 
 interface Props {
-    stories: Story[];
+    stories: StoryWithImage[];
 }
 
 export function StoriesList({ stories }: Props) {

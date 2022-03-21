@@ -1,4 +1,3 @@
-import type { Story } from '@prezly/sdk';
 import {
     DEFAULT_PAGE_SIZE,
     getNewsroomServerSideProps,
@@ -7,10 +6,10 @@ import {
 import type { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
 
-import type { PaginationProps } from 'types';
+import type { PaginationProps, StoryWithImage } from 'types';
 
 interface Props {
-    stories: Story[];
+    stories: StoryWithImage[];
     pagination: PaginationProps;
 }
 
@@ -30,13 +29,15 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
 
     const { stories, storiesTotal } = await api.getStories({
         page,
+        include: ['thumbnail_image', 'content'],
     });
 
     return processRequest(
         context,
         {
             ...serverSideProps,
-            stories,
+            // TODO: This is temporary until return types from API are figured out
+            stories: stories as StoryWithImage[],
             pagination: {
                 itemsTotal: storiesTotal,
                 currentPage: page ?? 1,

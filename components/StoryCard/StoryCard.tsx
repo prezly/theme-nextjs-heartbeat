@@ -1,43 +1,32 @@
 import Link from 'next/link';
 import ReadingTime from 'reading-time';
-import type { Story } from '@prezly/sdk';
 import Image from '@prezly/uploadcare-image';
 
+import { StoryWithImage } from 'types';
+
+import { getStoryThumbnail } from './lib';
+
 type Props = {
-    story: Story;
+    story: StoryWithImage;
 };
 
 export function StoryCard({ story }: Props) {
-    // @ts-expect-error
-    const { preview_image, header_image, social_image, published_at } = story;
-    let imageToUse = preview_image;
-    if (!preview_image && social_image) {
-        imageToUse = social_image;
-    }
+    const image = getStoryThumbnail(story);
 
-    if (!preview_image && header_image) {
-        imageToUse = header_image;
-    }
-
-    if (imageToUse) {
-        imageToUse = JSON.parse(imageToUse);
-    }
-
+    const { published_at, content } = story;
     const publicationDate = published_at ? new Date(published_at) : undefined;
-    // @ts-expect-error
-    const readingTime = ReadingTime(story.content || '');
+    const readingTime = ReadingTime(content);
 
     return (
-        <Link key={story.id} href={`/${story.slug}`} passHref>
+        <Link href={`/${story.slug}`} passHref>
             <a>
-                <div className="flex flex-col rounded-lg shadow-lg overflow-hidden" key={story.id}>
-
+                <div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
                     <div className="flex-shrink-0">
-                        {imageToUse
+                        {image
                         && (
                             <Image
                                 lazy
-                                imageDetails={imageToUse as any}
+                                imageDetails={image}
                                 alt={story.title}
                                 layout="fill"
                                 height={240}
@@ -65,14 +54,14 @@ export function StoryCard({ story }: Props) {
                                     </span>
                                 ))}
                             </div>
-                            <a href="#" className="block mt-2">
+                            <div className="block mt-2">
                                 <p className="text-xl font-semibold text-gray-900 h-8">
                                     {story.title}
                                 </p>
                                 <p className="mt-3 text-base text-gray-500 h-12">
                                     {story.subtitle}
                                 </p>
-                            </a>
+                            </div>
                         </div>
                         <div className="mt-6 flex items-center">
                             <div className="flex space-x-1 text-sm text-gray-500">

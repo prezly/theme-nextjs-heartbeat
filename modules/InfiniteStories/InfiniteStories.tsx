@@ -1,13 +1,13 @@
-import type { Category, Story } from '@prezly/sdk';
+import type { Category } from '@prezly/sdk';
 
-import type { PaginationProps } from 'types';
+import type { PaginationProps, StoryWithImage } from 'types';
 
 import { useInfiniteStoriesLoading } from './lib';
 import { LoadMore } from './LoadMore';
 import { StoriesList } from './StoriesList';
 
 interface Props {
-    initialStories: Story[];
+    initialStories: StoryWithImage[];
     pagination: PaginationProps;
     category?: Category;
 }

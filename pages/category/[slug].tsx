@@ -1,12 +1,11 @@
 import { GetServerSideProps } from 'next';
-import { Story } from '@prezly/sdk/dist/types';
 import { DEFAULT_PAGE_SIZE, getNewsroomServerSideProps, processRequest } from '@prezly/theme-kit-nextjs';
 import dynamic from 'next/dynamic';
 
-import { PaginationProps } from 'types';
+import { PaginationProps, StoryWithImage } from 'types';
 
 interface Props {
-    stories: Story[];
+    stories: StoryWithImage[];
     pagination: PaginationProps;
 }
 
@@ -36,6 +35,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
 
     const { stories, storiesTotal } = await api.getStoriesFromCategory(category, {
         page,
+        include: ['thumbnail_image', 'content'],
     });
 
     return processRequest(
@@ -46,7 +46,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
                 ...serverSideProps.newsroomContextProps,
                 currentCategory: category,
             },
-            stories,
+            // TODO: This is temporary until return types from API are figured out
+            stories: stories as StoryWithImage[],
             pagination: {
                 itemsTotal: storiesTotal,
                 currentPage: page ?? 1,
