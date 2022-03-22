@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import { useCategories } from '@prezly/theme-kit-nextjs';
+import classNames from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -61,7 +62,11 @@ export function Header() {
                     <nav className="relative flex-col flex-grow md:pb-0 md:flex md:justify-end md:flex-row">
                         <button
                             onClick={toggleMenu}
-                            className="hidden md:flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg md:w-auto md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                            className={classNames(
+                                'hidden md:flex flex-row items-center w-full px-4 py-2 mt-2 md:w-auto md:mt-0 md:ml-4',
+                                'text-sm font-semibold text-left bg-transparent rounded-lg',
+                                'hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline',
+                            )}
                             type="button"
                         >
                             <span>Categories</span>
@@ -90,7 +95,12 @@ export function Header() {
                                                 key={category.id}
                                                 href={`/category/${category.i18n[locale].slug}`}
                                             >
-                                                <a className="block px-4 py-2 bg-transparent rounded-lg md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                                                <a
+                                                    className={classNames(
+                                                        'block px-4 py-2 rounded-lg md:mt-0 bg-transparent',
+                                                        'hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline',
+                                                    )}
+                                                >
                                                     <span className="font-bold">
                                                         {category.display_name}
                                                     </span>

@@ -1,4 +1,5 @@
 import Image from '@prezly/uploadcare-image';
+import classNames from 'classnames';
 import Link from 'next/link';
 import ReadingTime from 'reading-time';
 
@@ -45,7 +46,10 @@ export function StoryCard({ story }: Props) {
                         <div className="h-6 mb-2">
                             {story.categories.map((category) => (
                                 <span
-                                    className="inline-flex items-center px-3 py-0.5 mr-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800"
+                                    className={classNames(
+                                        'inline-flex items-center px-3 py-0.5 mr-1',
+                                        'rounded-full text-xs font-medium bg-indigo-100 text-indigo-800',
+                                    )}
                                     key={category.id}
                                 >
                                     {category.display_name}
