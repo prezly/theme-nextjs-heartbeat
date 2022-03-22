@@ -27,6 +27,7 @@ export function Header() {
                             <Link href="/" passHref>
                                 <a className="flex">
                                     <span className="sr-only">Heartbeat</span>
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
                                         className="h-24 w-auto"
                                         src="https://cdn.uc.assets.prezly.com/1a393240-1739-487c-a4bc-ed3c36f6b300/-/quality/best/-/format/auto/"
