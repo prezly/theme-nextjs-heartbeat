@@ -1,5 +1,5 @@
 import { StoryFormatVersion } from '@prezly/sdk';
-import type { ExtendedStory } from '@prezly/sdk/dist/types';
+import type { ExtendedStory } from '@prezly/sdk';
 import dynamic from 'next/dynamic';
 
 import { StorySeo } from '@/components';

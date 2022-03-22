@@ -1,5 +1,5 @@
 import { StoryFormatVersion } from '@prezly/sdk';
-import type { ExtendedStory } from '@prezly/sdk/dist/types';
+import type { ExtendedStory } from '@prezly/sdk';
 import ReactDOMServer from 'react-dom/server';
 
 import { SlateRenderer } from '@/components';

@@ -10,4 +10,10 @@ declare global {
             DISCOURSE_CATEGORY_ID: number;
         }
     }
+    interface Window {
+        DiscourseEmbed?: {
+            discourseUrl: string;
+            topicId?: number;
+        };
+    }
 }

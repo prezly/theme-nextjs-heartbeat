@@ -8,7 +8,6 @@ const SCRIPT_ID = 'discourse-embed-script';
 
 export function DiscourseComments({ topicId }: Props) {
     useEffect(() => {
-        // @ts-ignore
         window.DiscourseEmbed = {
             discourseUrl: 'https://discourse.prezly.io/',
             topicId,
@@ -18,7 +17,6 @@ export function DiscourseComments({ topicId }: Props) {
         d.id = SCRIPT_ID;
         d.type = 'text/javascript';
         d.async = true;
-        // @ts-ignore
         d.src = `${window.DiscourseEmbed.discourseUrl}javascripts/embed.js`;
         (
             document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]
