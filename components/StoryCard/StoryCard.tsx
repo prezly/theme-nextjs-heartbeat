@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import Link from 'next/link';
 import ReadingTime from 'reading-time';
 
-import type { StoryWithImage } from 'types';
+import type { StoryWithImage } from '@/utils';
 
 import { getStoryThumbnail } from './lib';
 

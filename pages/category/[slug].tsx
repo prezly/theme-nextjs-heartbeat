@@ -6,7 +6,7 @@ import {
 import type { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
 
-import type { PaginationProps, StoryWithImage } from 'types';
+import type { PaginationProps, StoryWithImage } from '@/utils';
 
 interface Props {
     stories: StoryWithImage[];

@@ -2,7 +2,7 @@ import { useCurrentCategory } from '@prezly/theme-kit-nextjs';
 import React from 'react';
 
 import { Layout } from '@/modules/Layout';
-import type { PaginationProps, StoryWithImage } from 'types';
+import type { PaginationProps, StoryWithImage } from '@/utils';
 
 import { InfiniteStories } from '../InfiniteStories';
 

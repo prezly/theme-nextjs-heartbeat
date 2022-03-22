@@ -1,6 +1,6 @@
 import type { Category } from '@prezly/sdk';
 
-import type { PaginationProps, StoryWithImage } from 'types';
+import type { PaginationProps, StoryWithImage } from '@/utils';
 
 import { useInfiniteStoriesLoading } from './lib';
 import { LoadMore } from './LoadMore';

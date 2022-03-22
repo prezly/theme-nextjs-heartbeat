@@ -1,4 +1,4 @@
-import { ExtraStoryFields, Story } from '@prezly/sdk';
+import type { ExtraStoryFields, Story } from '@prezly/sdk';
 
 export type StoryWithImage = Story & Pick<ExtraStoryFields, 'thumbnail_image' | 'content'>;
 

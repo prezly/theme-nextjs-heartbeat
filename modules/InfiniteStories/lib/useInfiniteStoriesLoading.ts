@@ -4,7 +4,7 @@ import { useCurrentLocale } from '@prezly/theme-kit-nextjs';
 import { useEffect } from 'react';
 
 import { useInfiniteLoading } from '@/hooks';
-import type { PaginationProps, StoryWithImage } from 'types';
+import type { PaginationProps, StoryWithImage } from '@/utils';
 
 async function fetchStories(
     page: number,

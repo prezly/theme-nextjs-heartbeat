@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useAsyncFn } from 'react-use';
 
-import type { PaginationProps } from 'types';
+import type { PaginationProps } from '@/utils';
 
 interface Parameters<T> {
     fetchingFn: (nextPage: number) => Promise<T[]>;
