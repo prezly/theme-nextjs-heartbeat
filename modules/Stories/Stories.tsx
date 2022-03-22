@@ -33,5 +33,3 @@ export function Stories({ stories, pagination }: Props) {
         </Layout>
     );
 }
-
-export default Stories;

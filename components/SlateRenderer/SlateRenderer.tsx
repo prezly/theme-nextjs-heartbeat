@@ -31,8 +31,6 @@ const components: ComponentRenderers = {
     // [QUOTE_NODE_TYPE]: ({ children }) => <blockquote>{children}</blockquote>,
 };
 
-function SlateRenderer({ nodes }: Props) {
+export function SlateRenderer({ nodes }: Props) {
     return <Renderer nodes={nodes} components={components} />;
 }
-
-export default SlateRenderer;
