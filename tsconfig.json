@@ -20,19 +20,23 @@
     "target": "esnext",
     "baseUrl": ".",
     "paths": {
+      "@/components": ["components/"],
       "@/components/*": ["components/*"],
       "@/modules/*": ["modules/*"],
-      "@/utils/*": ["utils/*"],
+      "@/hooks": ["hooks/"],
+      "@/utils": ["utils/"],
       "@/public/*": ["public/*"]
     }
   },
   "exclude": ["node_modules"],
   "include": [
     "next-env.d.ts",
+    "@types/*",
     "**/*.ts",
     "**/*.tsx",
     ".eslintrc.js",
+    "next.config.js",
     "postcss.config.js",
-    "tailwind.config.js",
+    "tailwind.config.js"
   ]
 }

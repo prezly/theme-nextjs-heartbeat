@@ -1,21 +1,45 @@
-import { Category } from '@prezly/sdk/dist/types';
-import Link from 'next/link';
+import { useCurrentCategory } from '@prezly/theme-kit-nextjs';
+import React from 'react';
 
-type Props = {
-    category: Category;
-};
+import { Layout } from '@/modules/Layout';
+import type { PaginationProps, StoryWithImage } from '@/utils';
 
-const CategoryComponent = ({ category }: Props) => {
-    // Use first available locale with a slug
-    // Change this for multilang support
-    const locales = Object.keys(category.i18n);
-    const locale = locales.find((localeCode) => !!category.i18n[localeCode].slug) || locales[0];
+import { InfiniteStories } from '../InfiniteStories';
+
+interface Props {
+    pagination: PaginationProps;
+    stories: StoryWithImage[];
+}
+
+export function Category({ pagination, stories }: Props) {
+    const currentCategory = useCurrentCategory();
+    if (!currentCategory) {
+        return null;
+    }
 
     return (
-        <Link href={`/category/${category.i18n[locale].slug}`}>
-            <a>{category.display_name}</a>
-        </Link>
-    );
-};
+        <Layout
+            title={currentCategory.display_name}
+            description={currentCategory.display_description || undefined}
+        >
+            <div className="relative pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
+                <div className="relative max-w-lg lg:max-w-7xl mx-auto">
+                    <div className="text-center">
+                        <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl">
+                            {currentCategory.display_name}
+                        </h2>
+                        <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
+                            {currentCategory.display_description}
+                        </p>
+                    </div>
 
-export default CategoryComponent;
+                    <InfiniteStories
+                        initialStories={stories}
+                        pagination={pagination}
+                        category={currentCategory}
+                    />
+                </div>
+            </div>
+        </Layout>
+    );
+}

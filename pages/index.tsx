@@ -1,51 +1,51 @@
-import type { FunctionComponent } from 'react';
-import { GetServerSideProps } from 'next';
-import { getPrezlyApi } from '@/utils/prezly';
-import Layout from '@/components/Layout';
-import Stories from '@/modules/Stories';
-import type { ExtendedStory } from '@prezly/sdk/dist/types';
-import { Category, Newsroom } from '@prezly/sdk/dist/types';
-import { PageSeo } from '@/components/seo';
-import getAssetsUrl from '@/utils/prezly/getAssetsUrl';
+import {
+    DEFAULT_PAGE_SIZE,
+    getNewsroomServerSideProps,
+    processRequest,
+} from '@prezly/theme-kit-nextjs';
+import type { GetServerSideProps } from 'next';
+import dynamic from 'next/dynamic';
 
-type Props = {
-    stories: ExtendedStory[];
-    categories?: Array<Category>;
-    newsroom: Newsroom;
-};
+import type { PaginationProps, StoryWithImage } from '@/utils';
 
-const description = `
-    Heartbeat.prezly.io is an internal newsroom for team announcements,
-    strategy decisions or weekly company updates.
-`;
+interface Props {
+    stories: StoryWithImage[];
+    pagination: PaginationProps;
+}
 
-const IndexPage: FunctionComponent<Props> = ({ stories, categories, newsroom }) => (
-    <>
-        <PageSeo
-            title={newsroom.display_name}
-            description={description}
-            url={newsroom.url}
-            imageUrl={getAssetsUrl(newsroom.newsroom_logo?.uuid as string)}
-        />
-        <Layout categories={categories}>
-            <Stories
-                stories={stories}
-                title="Prezly heartbeat ❤️"
-                description={description}
-            />
-        </Layout>
-    </>
-);
+const Stories = dynamic(() => import('@/modules/Stories'), { ssr: true });
+
+function IndexPage({ stories, pagination }: Props) {
+    return <Stories stories={stories} pagination={pagination} />;
+}
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
-    const api = getPrezlyApi(context.req);
-    const stories = await api.getStoriesExtended();
-    const categories = await api.getCategories();
-    const newsroom = await api.getNewsroom();
+    const { api, serverSideProps } = await getNewsroomServerSideProps(context);
 
-    return {
-        props: { stories, categories, newsroom },
-    };
+    const page =
+        context.query.page && typeof context.query.page === 'string'
+            ? Number(context.query.page)
+            : undefined;
+
+    const { stories, storiesTotal } = await api.getStories({
+        page,
+        include: ['thumbnail_image', 'content'],
+    });
+
+    return processRequest(
+        context,
+        {
+            ...serverSideProps,
+            // TODO: This is temporary until return types from API are figured out
+            stories: stories as StoryWithImage[],
+            pagination: {
+                itemsTotal: storiesTotal,
+                currentPage: page ?? 1,
+                pageSize: DEFAULT_PAGE_SIZE,
+            },
+        },
+        '/',
+    );
 };
 
 export default IndexPage;
