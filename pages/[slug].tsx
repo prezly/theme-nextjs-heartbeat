@@ -38,11 +38,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     // since the locale code is not part of the URL (e.g. /my-story).
     const { serverSideProps } = await getNewsroomServerSideProps(context, { story });
 
-    // TODO: Add generic type to theme-kit-nextjs
     const env = getEnvVariables(context.req);
-    // @ts-expect-error
     const { DISCOURSE_API_URL } = env;
-    // @ts-expect-error
     const topicId = DISCOURSE_API_URL ? await syncDiscourseThread(env, story) : null;
 
     return processRequest(context, {
