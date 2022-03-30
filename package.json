@@ -25,6 +25,7 @@
     "@sentry/nextjs": "^6.18.2",
     "classnames": "^2.3.1",
     "next": "^12.1.0",
+    "next-plausible": "^3.1.7",
     "next-seo": "^5.1.0",
     "node-fetch": "^3.2.3",
     "parse-data-url": "^4.0.1",
