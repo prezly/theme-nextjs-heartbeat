@@ -17,7 +17,7 @@ RUN --mount=type=secret,id=NEXT_PUBLIC_SENTRY_DSN \
     export NEXT_PUBLIC_SENTRY_DSN=$(cat /run/secrets/NEXT_PUBLIC_SENTRY_DSN) && \
     export SENTRY_AUTH_TOKEN=$(cat /run/secrets/SENTRY_AUTH_TOKEN) && \
     export SENTRY_ORG="prezly" && \
-    export SENTRY_PROJECT="theme-nextjs-heartbeat" && \
+    export SENTRY_PROJECT="themes-nextjs" && \
     npm run build
 
 # Production image, copy all the files and run next
