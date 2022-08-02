@@ -1,8 +1,9 @@
 import type { ComponentRenderers } from '@prezly/content-renderer-react-js';
-import { Renderer } from '@prezly/content-renderer-react-js';
+import { Contact, Renderer } from '@prezly/content-renderer-react-js';
 import type { Node } from '@prezly/slate-types';
 import {
     BULLETED_LIST_NODE_TYPE,
+    CONTACT_NODE_TYPE,
     HEADING_1_NODE_TYPE,
     HEADING_2_NODE_TYPE,
     LIST_ITEM_NODE_TYPE,
@@ -11,6 +12,8 @@ import {
     PARAGRAPH_NODE_TYPE,
 } from '@prezly/slate-types';
 import '@prezly/content-renderer-react-js/styles.css';
+
+import styles from './SlateRenderer.module.css';
 
 interface Props {
     nodes: Node | Node[];
@@ -29,6 +32,7 @@ const components: ComponentRenderers = {
     // [LINK_NODE_TYPE]: ({ children, node }) => <a href={node.href}>{children}</a>,
     [PARAGRAPH_NODE_TYPE]: ({ children }) => <p>{children}</p>,
     // [QUOTE_NODE_TYPE]: ({ children }) => <blockquote>{children}</blockquote>,
+    [CONTACT_NODE_TYPE]: ({ node }) => <Contact node={node} className={styles.contact} />,
 };
 
 export function SlateRenderer({ nodes }: Props) {
