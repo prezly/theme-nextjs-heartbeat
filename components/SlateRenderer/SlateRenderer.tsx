@@ -13,8 +13,6 @@ import {
 } from '@prezly/slate-types';
 import '@prezly/content-renderer-react-js/styles.css';
 
-import styles from './SlateRenderer.module.css';
-
 interface Props {
     nodes: Node | Node[];
 }
@@ -32,7 +30,7 @@ const components: ComponentRenderers = {
     // [LINK_NODE_TYPE]: ({ children, node }) => <a href={node.href}>{children}</a>,
     [PARAGRAPH_NODE_TYPE]: ({ children }) => <p>{children}</p>,
     // [QUOTE_NODE_TYPE]: ({ children }) => <blockquote>{children}</blockquote>,
-    [CONTACT_NODE_TYPE]: ({ node }) => <Contact node={node} className={styles.contact} />,
+    [CONTACT_NODE_TYPE]: ({ node }) => <Contact node={node} className="not-prose" />,
 };
 
 export function SlateRenderer({ nodes }: Props) {
