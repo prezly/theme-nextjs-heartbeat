@@ -44,8 +44,8 @@ The newsroom is running within our own infrastructure and guarded by admin login
 Run the following command on your local environment
 
 ```
-git clone https://github.com/prezly/theme-nextjs-starter
-cd theme-nextjs-starter
+git clone https://github.com/prezly/theme-nextjs-heartbeat.git
+cd theme-nextjs-heartbeat
 npm i
 ```
 
