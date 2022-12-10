@@ -1,4 +1,4 @@
-import { StoryFormatVersion } from '@prezly/sdk';
+import { Story as StorySdk } from '@prezly/sdk';
 import type { ExtendedStory } from '@prezly/sdk';
 import dynamic from 'next/dynamic';
 
@@ -142,11 +142,11 @@ export function Story({ story, topicId }: Props) {
                         <p className="mt-8 text-xl text-gray-500 leading-8">{subtitle}</p>
                     </div>
                     <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
-                        {format_version === StoryFormatVersion.HTML && (
+                        {format_version === StorySdk.FormatVersion.HTML && (
                             // eslint-disable-next-line react/no-danger
                             <div dangerouslySetInnerHTML={{ __html: content as string }} />
                         )}
-                        {format_version === StoryFormatVersion.SLATEJS && (
+                        {format_version === StorySdk.FormatVersion.SLATEJS && (
                             <SlateRenderer nodes={JSON.parse(content as string)} />
                         )}
 

@@ -1,4 +1,4 @@
-import { StoryFormatVersion } from '@prezly/sdk';
+import { Story } from '@prezly/sdk';
 import type { ExtendedStory } from '@prezly/sdk';
 import ReactDOMServer from 'react-dom/server';
 
@@ -29,11 +29,11 @@ async function findTopicByTitle(env: NodeJS.ProcessEnv, title: string) {
 }
 
 function getStoryHtml(story: ExtendedStory): string {
-    if (story.format_version === StoryFormatVersion.HTML) {
+    if (story.format_version === Story.FormatVersion.HTML) {
         return story.content as string;
     }
 
-    if (story.format_version === StoryFormatVersion.SLATEJS) {
+    if (story.format_version === Story.FormatVersion.SLATEJS) {
         return ReactDOMServer.renderToString(
             <SlateRenderer nodes={JSON.parse(story.content as string)} />,
         );
