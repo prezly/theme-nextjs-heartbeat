@@ -7,10 +7,19 @@ import {
     ListItemTextNode,
     ListNode,
     ParagraphNode,
+    StoryBookmarkNode,
 } from '@prezly/story-content-format';
 
 import '@prezly/content-renderer-react-js/styles.css';
-import { ContactCard, Heading, List, ListItem, ListItemText, Paragraph } from './components';
+import {
+    ContactCard,
+    Heading,
+    List,
+    ListItem,
+    ListItemText,
+    Paragraph,
+    StoryBookmark,
+} from './components';
 
 interface Props {
     nodes: Node | Node[];
@@ -25,6 +34,7 @@ export function SlateRenderer({ nodes }: Props) {
             <Component match={HeadingNode.isHeadingNode} component={Heading} />
             <Component match={ParagraphNode.isParagraphNode} component={Paragraph} />
             <Component match={ContactNode.isContactNode} component={ContactCard} />
+            <Component match={StoryBookmarkNode.isStoryBookmarkNode} component={StoryBookmark} />
         </Renderer>
     );
 }
