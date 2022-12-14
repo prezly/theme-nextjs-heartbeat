@@ -21,7 +21,7 @@
     "@prezly/sdk": "11.9.1",
     "@prezly/slate-types": "0.69.7",
     "@prezly/story-content-format": "^0.58.1",
-    "@prezly/theme-kit-nextjs": "^3.1.0",
+    "@prezly/theme-kit-nextjs": "2.1.2",
     "@prezly/uploadcare-image": "^0.3.1",
     "@sentry/nextjs": "^6.18.2",
     "classnames": "^2.3.1",
